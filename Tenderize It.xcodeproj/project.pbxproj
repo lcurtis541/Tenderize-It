@@ -17,6 +17,13 @@
 		44DBF0FA2787B99F00131EC2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF0D02787B98F00131EC2 /* ContentView.swift */; };
 		44DBF0FB2787B99F00131EC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44DBF0D12787B99F00131EC2 /* Assets.xcassets */; };
 		44DBF0FC2787B99F00131EC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44DBF0D12787B99F00131EC2 /* Assets.xcassets */; };
+		44DBF10C2787CD7000131EC2 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 44DBF10B2787CD6F00131EC2 /* Sounds */; };
+		44DBF10D2787CD7000131EC2 /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 44DBF10B2787CD6F00131EC2 /* Sounds */; };
+		44DBF1112787D8B700131EC2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DBF10F2787D8A900131EC2 /* AVFoundation.framework */; };
+		44DBF1152787D99B00131EC2 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF1142787D99B00131EC2 /* Sounds.swift */; };
+		44DBF1162787D99C00131EC2 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF1142787D99B00131EC2 /* Sounds.swift */; };
+		44DBF11E2787E19E00131EC2 /* Beat Meat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44DBF11D2787E19E00131EC2 /* Beat Meat.mp3 */; };
+		44DBF11F2787E19E00131EC2 /* Beat Meat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44DBF11D2787E19E00131EC2 /* Beat Meat.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,10 @@
 		44DBF0EF2787B99F00131EC2 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44DBF0F32787B99F00131EC2 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		44DBF0F52787B99F00131EC2 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		44DBF10B2787CD6F00131EC2 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = ../../../Downloads/Sounds; sourceTree = "<group>"; };
+		44DBF10F2787D8A900131EC2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		44DBF1142787D99B00131EC2 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
+		44DBF11D2787E19E00131EC2 /* Beat Meat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Beat Meat.mp3"; path = "../../../Downloads/Sounds/Beat Meat.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44DBF1112787D8B700131EC2 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,15 +103,19 @@
 				44DBF0E62787B99F00131EC2 /* Tests iOS */,
 				44DBF0F22787B99F00131EC2 /* Tests macOS */,
 				44DBF0D72787B99F00131EC2 /* Products */,
+				44DBF10E2787D8A500131EC2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		44DBF0CE2787B98F00131EC2 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				44DBF10B2787CD6F00131EC2 /* Sounds */,
 				44DBF0CF2787B98F00131EC2 /* Tenderize_ItApp.swift */,
 				44DBF0D02787B98F00131EC2 /* ContentView.swift */,
 				44DBF0D12787B99F00131EC2 /* Assets.xcassets */,
+				44DBF1142787D99B00131EC2 /* Sounds.swift */,
+				44DBF11D2787E19E00131EC2 /* Beat Meat.mp3 */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -139,6 +155,14 @@
 				44DBF0F52787B99F00131EC2 /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		44DBF10E2787D8A500131EC2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44DBF10F2787D8A900131EC2 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +290,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44DBF10C2787CD7000131EC2 /* Sounds in Resources */,
+				44DBF11E2787E19E00131EC2 /* Beat Meat.mp3 in Resources */,
 				44DBF0FB2787B99F00131EC2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +300,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44DBF10D2787CD7000131EC2 /* Sounds in Resources */,
+				44DBF11F2787E19E00131EC2 /* Beat Meat.mp3 in Resources */,
 				44DBF0FC2787B99F00131EC2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44DBF1152787D99B00131EC2 /* Sounds.swift in Sources */,
 				44DBF0F92787B99F00131EC2 /* ContentView.swift in Sources */,
 				44DBF0F72787B99F00131EC2 /* Tenderize_ItApp.swift in Sources */,
 			);
@@ -308,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44DBF1162787D99C00131EC2 /* Sounds.swift in Sources */,
 				44DBF0FA2787B99F00131EC2 /* ContentView.swift in Sources */,
 				44DBF0F82787B99F00131EC2 /* Tenderize_ItApp.swift in Sources */,
 			);
@@ -461,7 +491,7 @@
 		44DBF1002787B99F00131EC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -491,7 +521,7 @@
 		44DBF1012787B99F00131EC2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

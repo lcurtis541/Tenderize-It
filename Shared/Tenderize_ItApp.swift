@@ -15,3 +15,19 @@ struct Tenderize_ItApp: App {
         }
     }
 }
+import AVFoundation
+
+var paudioPlayer = AVAudioPlayer()
+
+func playSound() {
+        let path = Bundle.main.path(forResource: "Beat.mp3", ofType: nil)!
+        let url = URL(fileURLWithPath: path)
+
+        do {
+            //create your audioPlayer in your parent class as a property
+            let audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer.play()
+        } catch {
+            print("couldn't load the file")
+        }
+    }
