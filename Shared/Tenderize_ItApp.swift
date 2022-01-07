@@ -12,22 +12,17 @@ struct Tenderize_ItApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+
         }
+        
     }
+    weak var myLabel: UILabel!
+    func plus() {
+
+        guard let presentValue = Int(myLabel!.text ?? "0") else { return }
+
+         let newValue = presentValue + 1
+         myLabel!.text = String(newValue)
+    }
+
 }
-import AVFoundation
-
-var paudioPlayer = AVAudioPlayer()
-
-func playSound() {
-        let path = Bundle.main.path(forResource: "Beat.mp3", ofType: nil)!
-        let url = URL(fileURLWithPath: path)
-
-        do {
-            //create your audioPlayer in your parent class as a property
-            let audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer.play()
-        } catch {
-            print("couldn't load the file")
-        }
-    }

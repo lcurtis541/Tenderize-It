@@ -24,6 +24,8 @@
 		44DBF1162787D99C00131EC2 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF1142787D99B00131EC2 /* Sounds.swift */; };
 		44DBF11E2787E19E00131EC2 /* Beat Meat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44DBF11D2787E19E00131EC2 /* Beat Meat.mp3 */; };
 		44DBF11F2787E19E00131EC2 /* Beat Meat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 44DBF11D2787E19E00131EC2 /* Beat Meat.mp3 */; };
+		44DBF1212787EF9900131EC2 /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF1202787EF9900131EC2 /* Count.swift */; };
+		44DBF1222787EF9A00131EC2 /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF1202787EF9900131EC2 /* Count.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,7 @@
 		44DBF10F2787D8A900131EC2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		44DBF1142787D99B00131EC2 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		44DBF11D2787E19E00131EC2 /* Beat Meat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Beat Meat.mp3"; path = "../../../Downloads/Sounds/Beat Meat.mp3"; sourceTree = "<group>"; };
+		44DBF1202787EF9900131EC2 /* Count.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Count.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,7 @@
 				44DBF0D12787B99F00131EC2 /* Assets.xcassets */,
 				44DBF1142787D99B00131EC2 /* Sounds.swift */,
 				44DBF11D2787E19E00131EC2 /* Beat Meat.mp3 */,
+				44DBF1202787EF9900131EC2 /* Count.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -330,6 +334,7 @@
 				44DBF1152787D99B00131EC2 /* Sounds.swift in Sources */,
 				44DBF0F92787B99F00131EC2 /* ContentView.swift in Sources */,
 				44DBF0F72787B99F00131EC2 /* Tenderize_ItApp.swift in Sources */,
+				44DBF1212787EF9900131EC2 /* Count.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +345,7 @@
 				44DBF1162787D99C00131EC2 /* Sounds.swift in Sources */,
 				44DBF0FA2787B99F00131EC2 /* ContentView.swift in Sources */,
 				44DBF0F82787B99F00131EC2 /* Tenderize_ItApp.swift in Sources */,
+				44DBF1222787EF9A00131EC2 /* Count.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
