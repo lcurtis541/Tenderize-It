@@ -8,6 +8,9 @@
 import SwiftUI
 import AVFoundation
 
+var player:AVAudioPlayer?
+
+
 struct ContentView: View {
     @State var count: Int = 0
     @State var degree: Double = 0
@@ -17,21 +20,8 @@ struct ContentView: View {
             
             Button (action: {
              
+                
                 self.count += 1
-                do
-                {
-                  try Manager.player = AVAudioPlayer.init(contentsOf: returnPathAtSelectedIndex(fileName: "Beat.wav"))
-                  //Set required delegates and Values
-
-                  Manager.player?.delegate = self
-                  Manager.player?.volume = 1.0
-                  Manager.player?.prepareToPlay()
-                  Manager.player?.play()
-                }
-                catch
-                {
-                  print("Error while playing music: \(error.localizedDescription)")
-                }
        
 
         
@@ -47,6 +37,19 @@ struct ContentView: View {
                     DragGesture(minimumDistance: 0)
                         .onChanged({ _ in
                             self.degree = 60
+                            let urlString = Bundle.main.path(forResource: "Beat", ofType: "wav")
+                            do{
+                                try AVAudioSession.sharedInstance().setMode(.default)
+                                try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+                                guard let  urlString = urlString else {
+                                    return
+                                }
+                                player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
+                                player?.play()
+                                
+                            } catch{
+                                print(error)
+                            }
                         })
                         .onEnded({ _ in
                             self.degree = 0
