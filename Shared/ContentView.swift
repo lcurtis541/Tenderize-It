@@ -12,12 +12,14 @@ var player:AVAudioPlayer?
 
 
 struct ContentView: View {
-    @State var count: Int = 0
+    @State var count: Double = 0
+    @State var multiplyer: Double = 1
     @State var degree: Double = 0
     @State var audioPlayer1: AVAudioPlayer!
     @State var audioPlayer2: AVAudioPlayer!
     @State var audioPlayer3: AVAudioPlayer!
     @State var audioCount: Int = 1
+    @State var lastHit = Date()
     var body: some View{
         ZStack{
             GeometryReader { geo in
@@ -29,8 +31,37 @@ struct ContentView: View {
             }
             
         VStack{
+            HStack(spacing:120){
+                VStack{
+                    Text("Beats")
+                        .font(.title)
+                    Text(String(format: "%.0f", count))
+                        .font(.title)
+                }
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.black, lineWidth: 4)
+                )
+                VStack{
+                    Text("Multi")
+                        .font(.title)
+                    Text(String(format: "%.2f", multiplyer))
+                        .font(.title)
+                }
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.black, lineWidth: 4)
+                )
+            
+            }
+            .offset(y:-320)
+                
+
+            
             Button (action: {
-                self.count += 1
+                self.count += multiplyer
                 switch audioCount{
                 case 1:
                     audioPlayer1?.play()
@@ -43,7 +74,17 @@ struct ContentView: View {
                     audioCount = 1
                 default:
                     break
+                    
                 }
+                let diffComponents = Date().timeIntervalSinceReferenceDate-lastHit.timeIntervalSinceReferenceDate
+                print(diffComponents)
+                if(diffComponents < 3.0){
+                    multiplyer += 0.001
+                } else{
+                    multiplyer = 1.0
+                }
+                lastHit = Date()
+                
                     },label: {
                 Image("steak")
                     .resizable()
@@ -67,9 +108,8 @@ struct ContentView: View {
                     self.audioPlayer2 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                     self.audioPlayer3 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                        }
-            Text("Count: \(count)")
         }
-        .offset(y:150)
+        .offset(y:100)
         ZStack(alignment: .leading){
             Image("Hammer")
                 .resizable()
@@ -84,7 +124,7 @@ struct ContentView: View {
         
             
             
-    }
+        }
 }
 
 struct ContentView_Previews: PreviewProvider {
