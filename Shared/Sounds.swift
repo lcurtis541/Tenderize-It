@@ -12,31 +12,32 @@ class Sounds: UIViewController{
     var audioPlay = AVAudioPlayer()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        let soudFile = Bundle.main.url(
-            forResource: "Beat Meat",
-            withExtension: "mp3")!
-        
-        do {
-            // Play alongside other sounds
-            try AVAudioSession.sharedInstance().setCategory(
-                AVAudioSession.Category.playback
-            )
-            try AVAudioSession.sharedInstance().setActive(true)
+        // Load a local sound file
+            guard let soundFileURL = Bundle.main.url(
+                forResource: "Beat Sound",
+                withExtension: "mp3"
+            ) else {
+                return
+            }
+            
+            do {
+                // Configure and activate the AVAudioSession
+                try AVAudioSession.sharedInstance().setCategory(
+                    AVAudioSession.Category.playback
+                )
 
-            audioPlay = try AVAudioPlayer(
-                contentsOf: soudFile
-            )
-            print("In do")
-            audioPlay.play()
-        } catch {
-            print("oops")
+                try AVAudioSession.sharedInstance().setActive(true)
+
+                // Play a sound
+                let player = try AVAudioPlayer(
+                    contentsOf: soundFileURL
+                )
+
+                player.play()
+            }
+            catch {
+                // Handle error
+            }
         }
-    }
-    
-    @IBAction func drumButtonPRessed(){
-        audioPlay.play()
-        print("Pressed")
-    }
     
 }
