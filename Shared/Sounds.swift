@@ -8,36 +8,27 @@
 import UIKit
 import AVFoundation
 
-class Sounds: UIViewController{
-    var audioPlay = AVAudioPlayer()
-    
-    override func viewDidLoad() {
-        // Load a local sound file
-            guard let soundFileURL = Bundle.main.url(
-                forResource: "Beat Sound",
-                withExtension: "mp3"
-            ) else {
+var beatPlayer: AVAudioPlayer?
+
+class Sounds{
+    init(){
+        let urlString = Bundle.main.path(forResource: "Beat", ofType: "wav")
+        do{
+            try AVAudioSession.sharedInstance().setMode(.default)
+            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+            guard let  urlString = urlString else {
                 return
             }
+            beatPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
+            print("intis")
+
             
-            do {
-                // Configure and activate the AVAudioSession
-                try AVAudioSession.sharedInstance().setCategory(
-                    AVAudioSession.Category.playback
-                )
-
-                try AVAudioSession.sharedInstance().setActive(true)
-
-                // Play a sound
-                let player = try AVAudioPlayer(
-                    contentsOf: soundFileURL
-                )
-
-                player.play()
-            }
-            catch {
-                // Handle error
-            }
+        } catch{
+            print(error)
         }
+    }
     
+    func playsSound() {
+        beatPlayer?.play()
+}
 }

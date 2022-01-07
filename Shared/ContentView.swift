@@ -14,18 +14,36 @@ var player:AVAudioPlayer?
 struct ContentView: View {
     @State var count: Int = 0
     @State var degree: Double = 0
+    @State var audioPlayer1: AVAudioPlayer!
+    @State var audioPlayer2: AVAudioPlayer!
+    @State var audioPlayer3: AVAudioPlayer!
+    @State var audioCount: Int = 1
     var body: some View{
         ZStack{
-        VStack{
+            GeometryReader { geo in
+                Image("Kitchen")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .edgesIgnoringSafeArea(.top)
+                    .clipped()
+            }
             
+        VStack{
             Button (action: {
-             
-                
                 self.count += 1
-       
-
-        
-                
+                switch audioCount{
+                case 1:
+                    audioPlayer1?.play()
+                    audioCount = 2
+                case 2:
+                    audioPlayer2?.play()
+                    audioCount = 3
+                case 3:
+                    audioPlayer3?.play()
+                    audioCount = 1
+                default:
+                    break
+                }
                     },label: {
                 Image("steak")
                     .resizable()
@@ -37,26 +55,21 @@ struct ContentView: View {
                     DragGesture(minimumDistance: 0)
                         .onChanged({ _ in
                             self.degree = 60
-                            let urlString = Bundle.main.path(forResource: "Beat", ofType: "wav")
-                            do{
-                                try AVAudioSession.sharedInstance().setMode(.default)
-                                try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-                                guard let  urlString = urlString else {
-                                    return
-                                }
-                                player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
-                                player?.play()
-                                
-                            } catch{
-                                print(error)
-                            }
+                            
                         })
                         .onEnded({ _ in
                             self.degree = 0
                         })
                 )
+                .onAppear {
+                    let sound = Bundle.main.path(forResource: "Beat", ofType: "wav")
+                    self.audioPlayer1 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer2 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer3 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                       }
             Text("Count: \(count)")
         }
+        .offset(y:150)
         ZStack(alignment: .leading){
             Image("Hammer")
                 .resizable()
@@ -64,20 +77,19 @@ struct ContentView: View {
                 .frame(width: 150, height: 150)
                 .rotationEffect(.degrees(degree))
         }
-        .offset(x:-60,y:-30)
+        .offset(x:-60,y:120)
 
-        }
+        }.offset(y:-40)
 
         
             
             
-    }}
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {        Group {
-        ContentView()
-        ContentView()
-    }
+        ContentView()    }
     }}
 
 class Count: UIViewController {
