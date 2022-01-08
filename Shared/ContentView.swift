@@ -11,6 +11,7 @@ import AVFoundation
 var player:AVAudioPlayer?
 let COUNT_KEY = "Count"
 let HAMMER_KEY = "Hammer"
+let FHAMMERB_KEY = "FHammer"
 
 
 struct ContentView: View {
@@ -125,6 +126,7 @@ struct ContentView: View {
                     .frame(width: 150, height: 150)
                 
             })
+                .padding(30)
                 .simultaneousGesture(
                     DragGesture(minimumDistance: 0)
                         .onChanged({ _ in
@@ -149,12 +151,14 @@ struct ContentView: View {
                     self.audioPlayer10 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                        
                        }
-            Button("Show Sheet") {
-                        showingShop.toggle()
-                    }
-                    .sheet(isPresented: $showingShop,onDismiss: updateShop) {
-                        StoreView()
-                    }
+            VStack(alignment: .leading){
+                Button("Show Sheet") {
+                            showingShop.toggle()
+                        }
+                        .sheet(isPresented: $showingShop,onDismiss: updateShop) {
+                            StoreView()
+                        }
+            }
             
         }
         .offset(y:100)
