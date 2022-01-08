@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4408FB482789388700D04245 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4408FB472789388600D04245 /* StoreView.swift */; };
+		4408FB492789388700D04245 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4408FB472789388600D04245 /* StoreView.swift */; };
 		44DBF0E82787B99F00131EC2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF0E72787B99F00131EC2 /* Tests_iOS.swift */; };
 		44DBF0EA2787B99F00131EC2 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF0E92787B99F00131EC2 /* Tests_iOSLaunchTests.swift */; };
 		44DBF0F42787B99F00131EC2 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF0F32787B99F00131EC2 /* Tests_macOS.swift */; };
@@ -46,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4408FB472789388600D04245 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		44DBF0CF2787B98F00131EC2 /* Tenderize_ItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tenderize_ItApp.swift; sourceTree = "<group>"; };
 		44DBF0D02787B98F00131EC2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		44DBF0D12787B99F00131EC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,6 +123,7 @@
 				44DBF0D12787B99F00131EC2 /* Assets.xcassets */,
 				44DBF1142787D99B00131EC2 /* Sounds.swift */,
 				44DBF1202787EF9900131EC2 /* Count.swift */,
+				4408FB472789388600D04245 /* StoreView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -334,6 +338,7 @@
 				44DBF1152787D99B00131EC2 /* Sounds.swift in Sources */,
 				44DBF0F92787B99F00131EC2 /* ContentView.swift in Sources */,
 				44DBF0F72787B99F00131EC2 /* Tenderize_ItApp.swift in Sources */,
+				4408FB482789388700D04245 /* StoreView.swift in Sources */,
 				44DBF1212787EF9900131EC2 /* Count.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +350,7 @@
 				44DBF1162787D99C00131EC2 /* Sounds.swift in Sources */,
 				44DBF0FA2787B99F00131EC2 /* ContentView.swift in Sources */,
 				44DBF0F82787B99F00131EC2 /* Tenderize_ItApp.swift in Sources */,
+				4408FB492789388700D04245 /* StoreView.swift in Sources */,
 				44DBF1222787EF9A00131EC2 /* Count.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,7 +516,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -541,7 +547,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
