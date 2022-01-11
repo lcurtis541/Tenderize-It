@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		114368AAAE0A61C19657D539 /* Pods_Tenderize_It__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620A4B852ECC527B3CDAA481 /* Pods_Tenderize_It__macOS_.framework */; };
 		4408FB482789388700D04245 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4408FB472789388600D04245 /* StoreView.swift */; };
 		4408FB492789388700D04245 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4408FB472789388600D04245 /* StoreView.swift */; };
+		448C07F3278D220B006C9DAB /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C07F2278D220B006C9DAB /* Banner.swift */; };
+		448C07F4278D220B006C9DAB /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C07F2278D220B006C9DAB /* Banner.swift */; };
 		44DBF0E82787B99F00131EC2 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF0E72787B99F00131EC2 /* Tests_iOS.swift */; };
 		44DBF0EA2787B99F00131EC2 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF0E92787B99F00131EC2 /* Tests_iOSLaunchTests.swift */; };
 		44DBF0F42787B99F00131EC2 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF0F32787B99F00131EC2 /* Tests_macOS.swift */; };
@@ -28,6 +31,7 @@
 		44DBF1222787EF9A00131EC2 /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DBF1202787EF9900131EC2 /* Count.swift */; };
 		44DBF1272788186400131EC2 /* Beat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 44DBF1262788186300131EC2 /* Beat.wav */; };
 		44DBF1282788186400131EC2 /* Beat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 44DBF1262788186300131EC2 /* Beat.wav */; };
+		A016F3ECC2502B30064798C3 /* Pods_Tenderize_It__iOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C78C54FBF6F8CED27405927D /* Pods_Tenderize_It__iOS_.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09FB73448BC201927CE6871F /* Pods-Tenderize It (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tenderize It (macOS).debug.xcconfig"; path = "Target Support Files/Pods-Tenderize It (macOS)/Pods-Tenderize It (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		4408FB472789388600D04245 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		4408FB4A278CEE3F00D04245 /* Tenderize-It--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Tenderize-It--iOS--Info.plist"; sourceTree = "<group>"; };
+		448C07F2278D220B006C9DAB /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		44DBF0CF2787B98F00131EC2 /* Tenderize_ItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tenderize_ItApp.swift; sourceTree = "<group>"; };
 		44DBF0D02787B98F00131EC2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		44DBF0D12787B99F00131EC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +73,11 @@
 		44DBF1142787D99B00131EC2 /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		44DBF1202787EF9900131EC2 /* Count.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Count.swift; sourceTree = "<group>"; };
 		44DBF1262788186300131EC2 /* Beat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Beat.wav; sourceTree = "<group>"; };
+		620A4B852ECC527B3CDAA481 /* Pods_Tenderize_It__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tenderize_It__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADF0BEBA429448D6D1F89B77 /* Pods-Tenderize It (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tenderize It (macOS).release.xcconfig"; path = "Target Support Files/Pods-Tenderize It (macOS)/Pods-Tenderize It (macOS).release.xcconfig"; sourceTree = "<group>"; };
+		B2A15240AD0FFFB42649D6CE /* Pods-Tenderize It (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tenderize It (iOS).debug.xcconfig"; path = "Target Support Files/Pods-Tenderize It (iOS)/Pods-Tenderize It (iOS).debug.xcconfig"; sourceTree = "<group>"; };
+		C78A52EADB683C53B93B3D70 /* Pods-Tenderize It (iOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tenderize It (iOS).release.xcconfig"; path = "Target Support Files/Pods-Tenderize It (iOS)/Pods-Tenderize It (iOS).release.xcconfig"; sourceTree = "<group>"; };
+		C78C54FBF6F8CED27405927D /* Pods_Tenderize_It__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tenderize_It__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44DBF1112787D8B700131EC2 /* AVFoundation.framework in Frameworks */,
+				A016F3ECC2502B30064798C3 /* Pods_Tenderize_It__iOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114368AAAE0A61C19657D539 /* Pods_Tenderize_It__macOS_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +115,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B278333FEB6E212CD0FEF08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B2A15240AD0FFFB42649D6CE /* Pods-Tenderize It (iOS).debug.xcconfig */,
+				C78A52EADB683C53B93B3D70 /* Pods-Tenderize It (iOS).release.xcconfig */,
+				09FB73448BC201927CE6871F /* Pods-Tenderize It (macOS).debug.xcconfig */,
+				ADF0BEBA429448D6D1F89B77 /* Pods-Tenderize It (macOS).release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		44DBF0C92787B98D00131EC2 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +136,7 @@
 				44DBF0F22787B99F00131EC2 /* Tests macOS */,
 				44DBF0D72787B99F00131EC2 /* Products */,
 				44DBF10E2787D8A500131EC2 /* Frameworks */,
+				0B278333FEB6E212CD0FEF08 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +151,7 @@
 				44DBF1142787D99B00131EC2 /* Sounds.swift */,
 				44DBF1202787EF9900131EC2 /* Count.swift */,
 				4408FB472789388600D04245 /* StoreView.swift */,
+				448C07F2278D220B006C9DAB /* Banner.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -171,6 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				44DBF10F2787D8A900131EC2 /* AVFoundation.framework */,
+				C78C54FBF6F8CED27405927D /* Pods_Tenderize_It__iOS_.framework */,
+				620A4B852ECC527B3CDAA481 /* Pods_Tenderize_It__macOS_.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -182,9 +210,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44DBF0FF2787B99F00131EC2 /* Build configuration list for PBXNativeTarget "Tenderize It (iOS)" */;
 			buildPhases = (
+				378B78E197E40BD34DF4E391 /* [CP] Check Pods Manifest.lock */,
 				44DBF0D22787B99F00131EC2 /* Sources */,
 				44DBF0D32787B99F00131EC2 /* Frameworks */,
 				44DBF0D42787B99F00131EC2 /* Resources */,
+				1E00A2EA783EE2CC50857F33 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -199,6 +229,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44DBF1022787B99F00131EC2 /* Build configuration list for PBXNativeTarget "Tenderize It (macOS)" */;
 			buildPhases = (
+				463909793DFC6291ED09D4DE /* [CP] Check Pods Manifest.lock */,
 				44DBF0D82787B99F00131EC2 /* Sources */,
 				44DBF0D92787B99F00131EC2 /* Frameworks */,
 				44DBF0DA2787B99F00131EC2 /* Resources */,
@@ -332,6 +363,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1E00A2EA783EE2CC50857F33 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tenderize It (iOS)/Pods-Tenderize It (iOS)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tenderize It (iOS)/Pods-Tenderize It (iOS)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tenderize It (iOS)/Pods-Tenderize It (iOS)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		378B78E197E40BD34DF4E391 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tenderize It (iOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		463909793DFC6291ED09D4DE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tenderize It (macOS)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		44DBF0D22787B99F00131EC2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -342,6 +437,7 @@
 				44DBF0F72787B99F00131EC2 /* Tenderize_ItApp.swift in Sources */,
 				4408FB482789388700D04245 /* StoreView.swift in Sources */,
 				44DBF1212787EF9900131EC2 /* Count.swift in Sources */,
+				448C07F3278D220B006C9DAB /* Banner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +450,7 @@
 				44DBF0F82787B99F00131EC2 /* Tenderize_ItApp.swift in Sources */,
 				4408FB492789388700D04245 /* StoreView.swift in Sources */,
 				44DBF1222787EF9A00131EC2 /* Count.swift in Sources */,
+				448C07F4278D220B006C9DAB /* Banner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,39 +601,7 @@
 		};
 		44DBF1002787B99F00131EC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 42PXLCUPV6;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Tenderize-It--iOS--Info.plist";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Rootz.Tenderize-It";
-				PRODUCT_NAME = "Tenderize It";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		44DBF1012787B99F00131EC2 /* Release */ = {
-			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2A15240AD0FFFB42649D6CE /* Pods-Tenderize It (iOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -567,10 +632,46 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
+			name = Debug;
+		};
+		44DBF1012787B99F00131EC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C78A52EADB683C53B93B3D70 /* Pods-Tenderize It (iOS).release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 42PXLCUPV6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tenderize-It--iOS--Info.plist";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Rootz.Tenderize-It";
+				PRODUCT_NAME = "Tenderize It";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+			};
 			name = Release;
 		};
 		44DBF1032787B99F00131EC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09FB73448BC201927CE6871F /* Pods-Tenderize It (macOS).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -599,6 +700,7 @@
 		};
 		44DBF1042787B99F00131EC2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADF0BEBA429448D6D1F89B77 /* Pods-Tenderize It (macOS).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

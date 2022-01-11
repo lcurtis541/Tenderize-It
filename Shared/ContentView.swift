@@ -12,11 +12,13 @@ var player:AVAudioPlayer?
 let COUNT_KEY = "Count"
 let HAMMER_KEY = "Hammer"
 let FHAMMERB_KEY = "FHammer"
+let MHAMMERB_KEY = "MHammer"
 
 
 struct ContentView: View {
     @State var count: Double = UserDefaults.standard.double(forKey: COUNT_KEY)
     @State var ham: String = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
+    @State var perHit: Int = (UserDefaults.standard.string(forKey: HAMMER_KEY) == "Meat Hammer") ? 2 : 1
     @State var multiplyer: Double = 1
     @State var degree: Double = 0
     @State var audioPlayer1: AVAudioPlayer!
@@ -46,10 +48,10 @@ struct ContentView: View {
                 VStack{
                     Text("Beats")
                         .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/22))
+                        .font(.system(size: UIScreen.screenWidth/25))
                     Text(String(format: "%.0f", count))
                         .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/22))
+                        .font(.system(size: UIScreen.screenWidth/25))
                 }
                 .padding()
                 .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/5)
@@ -60,10 +62,10 @@ struct ContentView: View {
                 VStack{
                     Text("Multi")
                         .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/22))
+                        .font(.system(size: UIScreen.screenWidth/25))
                     Text(String(format: "%.2f", multiplyer))
                         .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/22))
+                        .font(.system(size: UIScreen.screenWidth/25))
                 }
                 .padding()
                 .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/5)
@@ -78,7 +80,7 @@ struct ContentView: View {
 
             
             Button (action: {
-                self.count += multiplyer
+                self.count += multiplyer * Double(perHit)
                 UserDefaults.standard.set(count, forKey: COUNT_KEY)
                 switch audioCount{
                 case 1:
@@ -186,6 +188,12 @@ struct ContentView: View {
     func updateShop(){
         count = UserDefaults.standard.double(forKey: COUNT_KEY)
         ham = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
+        if(ham == "Meat Hammer"){
+            perHit = 2
+        } else{
+            perHit = 1
+        }
+        
 
     }
 }

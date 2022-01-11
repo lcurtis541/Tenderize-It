@@ -1,0 +1,6 @@
+framework module Pods_Tenderize_It__iOS_ {
+  umbrella header "Pods-Tenderize It (iOS)-umbrella.h"
+
+  export *
+  module * { export * }
+}

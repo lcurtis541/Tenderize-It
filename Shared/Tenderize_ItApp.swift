@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 
 @main
 struct Tenderize_ItApp: App {
+    
+    init(){
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

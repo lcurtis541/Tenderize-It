@@ -12,6 +12,8 @@ struct StoreView: View {
     @State var ham: String = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
     @State var fHamBought:Bool = UserDefaults.standard.bool(forKey: FHAMMERB_KEY)
     @State var hammerText:String = UserDefaults.standard.bool(forKey: FHAMMERB_KEY) ? "Bought" : "2000"
+    @State var meatHammerBought:Bool = UserDefaults.standard.bool(forKey: MHAMMERB_KEY)
+    @State var meatHammerText:String = UserDefaults.standard.bool(forKey: MHAMMERB_KEY) ? "Bought" : "2000"
 
     
 
@@ -28,6 +30,7 @@ struct StoreView: View {
                     Menu {
                         Button("Default", action:{ UserDefaults.standard.set("Hammer", forKey: HAMMER_KEY)})
                         Button("Future Hammer", action:{UserDefaults.standard.set("FuruteHammer", forKey: HAMMER_KEY)}).disabled(!fHamBought)
+                        Button("Meat Hammer", action:{UserDefaults.standard.set("Meat Hammer", forKey: HAMMER_KEY)}).disabled(!meatHammerBought)
                     }label: {
                         Text("Choose Hammer")
                     }.menuStyle(MenuStyling())
@@ -41,16 +44,44 @@ struct StoreView: View {
             }
             List {
                 HStack{
-                    Image("FuruteHammer")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                    Text("Future Hammer")
-                    Button(action: buyFutureHam){
-                        Text(hammerText)
+                    VStack{
+                        Image("FuruteHammer")
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
+                        Text("Future Hammer")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/20))
                     }
-                    .buttonStyle(GrowingButton())
+                    VStack(){
+                        Text("Completely Costmetic. Does not help at all, looks cool tho.")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/25))
+                            .frame(maxWidth:.infinity)
+                        Button(action: buyFutureHam){
+                            Text(hammerText)
+                        }
+                        .buttonStyle(GrowingButton())
+                    }
+                }
+                HStack{
+                    VStack{
+                        Image("Meat Hammer")
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
+                        Text("Meat Hammer")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/20))
+                    }
+                    VStack(){
+                        Text("2x for every beat! Combines with the multiplyer too.")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/25))
+                            .frame(maxWidth:.infinity)
+                        Button(action: buyMeatHam){
+                            Text(meatHammerText)
+                        }
+                        .buttonStyle(GrowingButton())
+                    }
                 }
             }
+            Spacer()
+            Banner(unitID: "ca-app-pub-3940256099942544/2934735716").frame(width:UIScreen.screenWidth, height:UIScreen.screenHeight/12 )
             
         }
     }
@@ -61,6 +92,16 @@ struct StoreView: View {
             count -= 40
             fHamBought = true
             UserDefaults.standard.set(true, forKey: FHAMMERB_KEY)
+            UserDefaults.standard.set(count, forKey: COUNT_KEY)
+        }
+    }
+    func buyMeatHam(){
+        if(!meatHammerBought && count>40){
+            UserDefaults.standard.set("Meat Hammer", forKey: HAMMER_KEY)
+            meatHammerText = "Bought"
+            count -= 40
+            meatHammerBought = true
+            UserDefaults.standard.set(true, forKey: MHAMMERB_KEY)
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
         }
     }
