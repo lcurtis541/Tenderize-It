@@ -37,20 +37,22 @@ struct ContentView: View {
             GeometryReader { geo in
                 Image("Background")
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .edgesIgnoringSafeArea(.top)
-                    .offset(y:10)
+                    .frame(width: UIScreen.screenWidth * 1.1, height: UIScreen.screenHeight * 1.1)
+                    .offset(x: -(UIScreen.screenWidth/20),y:-(UIScreen.screenHeight/10))
             }
             
         VStack{
-            HStack(spacing:140){
+            HStack(spacing:(UIScreen.screenWidth/2)){
                 VStack{
                     Text("Beats")
                         .lineLimit(1)
+                        .font(.system(size: UIScreen.screenWidth/22))
                     Text(String(format: "%.0f", count))
                         .lineLimit(1)
+                        .font(.system(size: UIScreen.screenWidth/22))
                 }
                 .padding()
+                .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/5)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(Color.black, lineWidth: 4)
@@ -58,11 +60,13 @@ struct ContentView: View {
                 VStack{
                     Text("Multi")
                         .lineLimit(1)
+                        .font(.system(size: UIScreen.screenWidth/22))
                     Text(String(format: "%.2f", multiplyer))
-
                         .lineLimit(1)
+                        .font(.system(size: UIScreen.screenWidth/22))
                 }
                 .padding()
+                .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/5)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(Color.black, lineWidth: 4)
@@ -123,7 +127,7 @@ struct ContentView: View {
                 Image("steak")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 150, height: 150)
+                    .frame(width:UIScreen.screenHeight/5, height: UIScreen.screenHeight/5)
                 
             })
                 .padding(30)
@@ -151,27 +155,29 @@ struct ContentView: View {
                     self.audioPlayer10 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                        
                        }
-            VStack(alignment: .leading){
-                Button("Show Sheet") {
+            ZStack(alignment: .leading){
+                Button("Shop") {
                             showingShop.toggle()
                         }
                         .sheet(isPresented: $showingShop,onDismiss: updateShop) {
                             StoreView()
                         }
+                        .offset(y:(UIScreen.screenHeight * 0.1))
+                        .buttonStyle(GrowingButton())
             }
             
         }
-        .offset(y:100)
+        .offset(y:UIScreen.screenHeight/7)
         ZStack(alignment: .leading){
             Image(ham)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(width: 150, height: 150)
+                .frame(width: UIScreen.screenHeight/5, height: UIScreen.screenHeight/5)
                 .rotationEffect(.degrees(degree))
         }
-        .offset(x:-60,y:120)
+        .offset(x:-(UIScreen.screenHeight/13),y:UIScreen.screenHeight/8)
 
-        }.offset(y:-40)
+        }
 
         
             
@@ -207,3 +213,4 @@ extension UIScreen{
    static let screenHeight = UIScreen.main.bounds.size.height
    static let screenSize = UIScreen.main.bounds.size
 }
+

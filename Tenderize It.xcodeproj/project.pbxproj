@@ -49,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		4408FB472789388600D04245 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
+		4408FB4A278CEE3F00D04245 /* Tenderize-It--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Tenderize-It--iOS--Info.plist"; sourceTree = "<group>"; };
 		44DBF0CF2787B98F00131EC2 /* Tenderize_ItApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tenderize_ItApp.swift; sourceTree = "<group>"; };
 		44DBF0D02787B98F00131EC2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		44DBF0D12787B99F00131EC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		44DBF0C92787B98D00131EC2 = {
 			isa = PBXGroup;
 			children = (
+				4408FB4A278CEE3F00D04245 /* Tenderize-It--iOS--Info.plist */,
 				44DBF0CE2787B98F00131EC2 /* Shared */,
 				44DBF0DD2787B99F00131EC2 /* macOS */,
 				44DBF0E62787B99F00131EC2 /* Tests iOS */,
@@ -503,13 +505,15 @@
 		44DBF1002787B99F00131EC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 42PXLCUPV6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tenderize-It--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -534,13 +538,15 @@
 		44DBF1012787B99F00131EC2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 42PXLCUPV6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tenderize-It--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
