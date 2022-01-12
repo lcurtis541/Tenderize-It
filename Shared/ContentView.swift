@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVFoundation
+import Firebase
 
 var player:AVAudioPlayer?
 let COUNT_KEY = "Count"
@@ -221,4 +222,6 @@ extension UIScreen{
    static let screenHeight = UIScreen.main.bounds.size.height
    static let screenSize = UIScreen.main.bounds.size
 }
+
+
 

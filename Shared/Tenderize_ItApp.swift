@@ -7,13 +7,15 @@
 
 import SwiftUI
 import GoogleMobileAds
+import Firebase
 
 @main
 struct Tenderize_ItApp: App {
     
     init(){
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-
+        // Use Firebase library to configure APIs
+        FirebaseApp.configure()
     }
     
     var body: some Scene {
