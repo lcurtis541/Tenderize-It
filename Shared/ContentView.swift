@@ -17,6 +17,17 @@ let MHAMMERB_KEY = "MHammer"
 
 
 struct ContentView: View {
+    var tabs = ["home", "notifications", "search", "basket"]
+        
+        @State var selectedTab = "home"
+        
+        // Location of each curve
+        @State var xAxis: CGFloat = 0
+        @Namespace var animation
+        
+        init() {
+            UITabBar.appearance().isHidden = true
+        }
     @State var count: Double = UserDefaults.standard.double(forKey: COUNT_KEY)
     @State var ham: String = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
     @State var perHit: Int = (UserDefaults.standard.string(forKey: HAMMER_KEY) == "Meat Hammer") ? 2 : 1
@@ -33,9 +44,11 @@ struct ContentView: View {
     @State var audioPlayer9: AVAudioPlayer!
     @State var audioPlayer10: AVAudioPlayer!
     @State private var showingShop = false
+    @State private var showChal = false
     @State var audioCount: Int = 1
     @State var lastHit = Date()
     var body: some View{
+
         ZStack{
             GeometryReader { geo in
                 Image("Background")
@@ -159,14 +172,24 @@ struct ContentView: View {
                        
                        }
             ZStack(alignment: .leading){
-                Button("Shop") {
-                            showingShop.toggle()
-                        }
-                        .sheet(isPresented: $showingShop,onDismiss: updateShop) {
-                            StoreView()
-                        }
-                        .offset(y:(UIScreen.screenHeight * 0.1))
-                        .buttonStyle(GrowingButton())
+                HStack{
+                    Button("Shop") {
+                                showingShop.toggle()
+                            }
+                            .sheet(isPresented: $showingShop,onDismiss: updateShop) {
+                                StoreView()
+                            }
+                            .offset(y:(UIScreen.screenHeight * 0.1))
+                            .buttonStyle(GrowingButton())
+                    Button("Challenge") {
+                        showChal.toggle()
+                            }
+                            .sheet(isPresented: $showChal) {
+                                TenderizeChall()
+                            }
+                            .offset(y:(UIScreen.screenHeight * 0.1))
+                            .buttonStyle(GrowingButton())
+                }
             }
             
         }
@@ -223,5 +246,17 @@ extension UIScreen{
    static let screenSize = UIScreen.main.bounds.size
 }
 
+/*
+NavigationView{
+    VStack{
+        NavigationLink(destination: TenderizeChall()){
+            Text("Chal")
+                .padding()
+                .foregroundColor(.white)
+                .background(LinearGradient(gradient: Gradient( colors: [Color.red,Color.blue]), startPoint: .leading, endPoint: .trailing))
+                .cornerRadius(40)
+        }
+    }
+}
 
-
+*/

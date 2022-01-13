@@ -12,11 +12,8 @@ import Firebase
 @main
 struct Tenderize_ItApp: App {
     
-    init(){
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
-        // Use Firebase library to configure APIs
-        FirebaseApp.configure()
-    }
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     
     var body: some Scene {
         WindowGroup {
@@ -34,4 +31,12 @@ struct Tenderize_ItApp: App {
          myLabel!.text = String(newValue)
     }
 
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate{
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool{
+        FirebaseApp.configure()
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        return true
+    }
 }
