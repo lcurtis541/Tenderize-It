@@ -1,29 +1,21 @@
 //
-//  ContentView.swift
-//  Shared
+//  TenderizeItChallenge.swift
+//  Tenderize It
 //
-//  Created by Landon on 1/6/22.
+//  Created by Landon on 1/12/22.
 //
 
 import SwiftUI
 import AVFoundation
 import Firebase
 
-var player:AVAudioPlayer?
-let COUNT_KEY = "Count"
-let HAMMER_KEY = "Hammer"
-let FHAMMERB_KEY = "FHammer"
-let MHAMMERB_KEY = "MHammer"
-let CHALLENGE_KEY = "Challenge"
-
-
-struct ContentView: View {
-
-    @State var count: Double = UserDefaults.standard.double(forKey: COUNT_KEY)
-    @State var ham: String = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
-    @State var perHit: Int = (UserDefaults.standard.string(forKey: HAMMER_KEY) == "Meat Hammer") ? 2 : 1
-    @State var multiplyer: Double = 1
+struct TenderizeItChallenge: View {
+    @State var count: Double = 0
+    @State var ham: String = "Hammer"
+    @State var perHit: Int = 1
     @State private var willMoveToNextScreen = false
+    @State private var willMoveToNextScreenEnd = false
+    @State var timeLeft: Double = 60
     @State var degree: Double = 0
     @State var audioPlayer1: AVAudioPlayer!
     @State var audioPlayer2: AVAudioPlayer!
@@ -39,6 +31,9 @@ struct ContentView: View {
     @State private var showChal = false
     @State var audioCount: Int = 1
     @State var lastHit = Date()
+    @State var firstHit: Bool = false
+    @State var timeRemaining = 60
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View{
 
         ZStack{
@@ -66,12 +61,21 @@ struct ContentView: View {
                         .stroke(Color.black, lineWidth: 4)
                 )
                 VStack{
-                    Text("Multi")
+                    Text("Time")
                         .lineLimit(1)
                         .font(.system(size: UIScreen.screenWidth/25))
-                    Text(String(format: "%.2f", multiplyer))
+                    Text("\(timeRemaining)")
                         .lineLimit(1)
                         .font(.system(size: UIScreen.screenWidth/25))
+                        .onReceive(timer) { _ in
+                                        if ((timeRemaining > 0) && firstHit) {
+                                            timeRemaining -= 1
+                                        }
+                                        else if((timeRemaining == 0) && !willMoveToNextScreenEnd){
+                                            UserDefaults.standard.set(Int(count),forKey:CHALLENGE_KEY)
+                                            willMoveToNextScreenEnd.toggle()
+                                        }
+                                        }
                 }
                 .padding()
                 .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/5)
@@ -86,8 +90,8 @@ struct ContentView: View {
 
             
             Button (action: {
-                self.count += multiplyer * Double(perHit)
-                UserDefaults.standard.set(count, forKey: COUNT_KEY)
+                self.count += 1.0
+                firstHit = true
                 switch audioCount{
                 case 1:
                     audioPlayer1?.play()
@@ -122,12 +126,6 @@ struct ContentView: View {
                 default:
                     break
                     
-                }
-                let diffComponents = Date().timeIntervalSinceReferenceDate-lastHit.timeIntervalSinceReferenceDate
-                if(diffComponents < 3.0){
-                    multiplyer += 0.001
-                } else{
-                    multiplyer = 1.0
                 }
                 lastHit = Date()
                 
@@ -165,16 +163,8 @@ struct ContentView: View {
                        }
             ZStack(alignment: .leading){
                 HStack{
-                    Button("Shop") {
-                                showingShop.toggle()
-                            }
-                            .sheet(isPresented: $showingShop,onDismiss: updateShop) {
-                                StoreView()
-                            }
-                            .offset(y:(UIScreen.screenHeight * 0.1))
-                            .buttonStyle(GrowingButton())
-                    Button("Challenge"){
-                        willMoveToNextScreen.toggle()
+                    Button("Home") {
+                                willMoveToNextScreen.toggle()
                     }
                             .offset(y:(UIScreen.screenHeight * 0.1))
                             .buttonStyle(GrowingButton())
@@ -192,69 +182,25 @@ struct ContentView: View {
         }
         .offset(x:-(UIScreen.screenHeight/13),y:UIScreen.screenHeight/8)
 
-        }.navigate(to: TenderizeItChallenge(), when: $willMoveToNextScreen)
+        }.navigate(to: ContentView(), when: $willMoveToNextScreen)
+            .navigate(to: TenderizeChall(), when: $willMoveToNextScreenEnd)
 
         
             
             
         }
-    func updateShop(){
-        count = UserDefaults.standard.double(forKey: COUNT_KEY)
-        ham = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
-        if(ham == "Meat Hammer"){
-            perHit = 2
-        } else{
-            perHit = 1
-        }
+
         
 
     }
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {        Group {
-        ContentView()    }
-    }}
 
-class Count: UIViewController {
-
-    var cur = 0;
-
-    @IBOutlet weak var money: UILabel!
-
-    @IBAction func pressbutton(sender: UIButton) {
-        cur = Int(money.text!)!;
-        self.money.text = String(cur + 1);
-
-    }
-
-}
-extension UIScreen{
-   static let screenWidth = UIScreen.main.bounds.size.width
-   static let screenHeight = UIScreen.main.bounds.size.height
-   static let screenSize = UIScreen.main.bounds.size
-}
-
-/*
-NavigationView{
-    VStack{
-        NavigationLink(destination: TenderizeChall()){
-            Text("Chal")
-                .padding()
-                .foregroundColor(.white)
-                .background(LinearGradient(gradient: Gradient( colors: [Color.red,Color.blue]), startPoint: .leading, endPoint: .trailing))
-                .cornerRadius(40)
-        }
-    }
-}
-
-*/
 extension View {
             /// Navigate to a new view.
                                /// - Parameters:
                                ///   - view: View to navigate to.
                                ///   - binding: Only navigates when this condition is `true`.
-                               func navigate<NewView: View>(to view: NewView, when binding: Binding<Bool>) -> some View {
+                               func navigateOG<NewView: View>(to view: NewView, when binding: Binding<Bool>) -> some View {
                                    NavigationView {
                                        ZStack {
                                            self
@@ -274,3 +220,10 @@ extension View {
                                    .navigationViewStyle(.stack)
                                }
                            }
+
+
+struct TenderizeItChallenge_Previews: PreviewProvider {
+    static var previews: some View {
+        TenderizeItChallenge()
+    }
+}

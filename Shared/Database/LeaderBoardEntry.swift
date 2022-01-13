@@ -7,8 +7,18 @@
 
 import Foundation
 
-struct LBE: Identifiable{
+struct LBE: Identifiable, Comparable{
     var id: String = UUID().uuidString
     var name: String
     var score: Int
+    
+    static func < (lhs: LBE, rhs: LBE) -> Bool{
+        return lhs.score > rhs.score
+    }
+    static func > (lhs: LBE, rhs: LBE) -> Bool{
+        return lhs.score < rhs.score
+    }
+    static func == (lhs: LBE, rhs: LBE) -> Bool{
+        return lhs.score == rhs.score
+    }
 }

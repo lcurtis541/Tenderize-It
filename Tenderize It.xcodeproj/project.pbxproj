@@ -10,6 +10,8 @@
 		114368AAAE0A61C19657D539 /* Pods_Tenderize_It__macOS_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 620A4B852ECC527B3CDAA481 /* Pods_Tenderize_It__macOS_.framework */; };
 		4408FB482789388700D04245 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4408FB472789388600D04245 /* StoreView.swift */; };
 		4408FB492789388700D04245 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4408FB472789388600D04245 /* StoreView.swift */; };
+		44474A90278FD7C40003A4E2 /* TenderizeItChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44474A8F278FD7C30003A4E2 /* TenderizeItChallenge.swift */; };
+		44474A91278FD7C40003A4E2 /* TenderizeItChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44474A8F278FD7C30003A4E2 /* TenderizeItChallenge.swift */; };
 		4477873C278F837F00F7381E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4477873B278F837F00F7381E /* GoogleService-Info.plist */; };
 		4477873D278F837F00F7381E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4477873B278F837F00F7381E /* GoogleService-Info.plist */; };
 		44778750278F885D00F7381E /* TenderizeChall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4477874F278F885C00F7381E /* TenderizeChall.swift */; };
@@ -73,6 +75,7 @@
 		09FB73448BC201927CE6871F /* Pods-Tenderize It (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tenderize It (macOS).debug.xcconfig"; path = "Target Support Files/Pods-Tenderize It (macOS)/Pods-Tenderize It (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		4408FB472789388600D04245 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		4408FB4A278CEE3F00D04245 /* Tenderize-It--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Tenderize-It--iOS--Info.plist"; sourceTree = "<group>"; };
+		44474A8F278FD7C30003A4E2 /* TenderizeItChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenderizeItChallenge.swift; sourceTree = "<group>"; };
 		4477873B278F837F00F7381E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4477874F278F885C00F7381E /* TenderizeChall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenderizeChall.swift; sourceTree = "<group>"; };
 		44778752278F937300F7381E /* LeaderBoardEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardEntry.swift; sourceTree = "<group>"; };
@@ -190,6 +193,7 @@
 				44DBF0CF2787B98F00131EC2 /* Tenderize_ItApp.swift */,
 				44778755278F93DE00F7381E /* Database */,
 				44DBF0D02787B98F00131EC2 /* ContentView.swift */,
+				44474A8F278FD7C30003A4E2 /* TenderizeItChallenge.swift */,
 				44DBF1262788186300131EC2 /* Beat.wav */,
 				44DBF0D12787B99F00131EC2 /* Assets.xcassets */,
 				44DBF1142787D99B00131EC2 /* Sounds.swift */,
@@ -496,6 +500,7 @@
 				44778753278F937300F7381E /* LeaderBoardEntry.swift in Sources */,
 				44778757278F941100F7381E /* ViewModel.swift in Sources */,
 				44DBF1152787D99B00131EC2 /* Sounds.swift in Sources */,
+				44474A90278FD7C40003A4E2 /* TenderizeItChallenge.swift in Sources */,
 				44DBF0F92787B99F00131EC2 /* ContentView.swift in Sources */,
 				44DBF0F72787B99F00131EC2 /* Tenderize_ItApp.swift in Sources */,
 				4408FB482789388700D04245 /* StoreView.swift in Sources */,
@@ -512,6 +517,7 @@
 				44778754278F937300F7381E /* LeaderBoardEntry.swift in Sources */,
 				44778758278F941100F7381E /* ViewModel.swift in Sources */,
 				44DBF1162787D99C00131EC2 /* Sounds.swift in Sources */,
+				44474A91278FD7C40003A4E2 /* TenderizeItChallenge.swift in Sources */,
 				44DBF0FA2787B99F00131EC2 /* ContentView.swift in Sources */,
 				44DBF0F82787B99F00131EC2 /* Tenderize_ItApp.swift in Sources */,
 				4408FB492789388700D04245 /* StoreView.swift in Sources */,

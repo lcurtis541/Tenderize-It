@@ -15,7 +15,7 @@ struct TenderizeChall: View {
     var body: some View {
         VStack{
             
-        List(viewModel.list) { itemlbe in
+            List(viewModel.list.sorted()) { itemlbe in
                 HStack{
                     Text(itemlbe.name)
                     Text("Score \(itemlbe.score)")
@@ -26,7 +26,7 @@ struct TenderizeChall: View {
         }
             TextField("Name", text: $textString)
             Button("Submit",action: {
-                viewModel.setData(enterName: textString, enterScore: Int.random(in: 1..<100))
+                viewModel.setData(enterName: textString, enterScore: UserDefaults.standard.integer(forKey: CHALLENGE_KEY))
             })
     }
     }}
