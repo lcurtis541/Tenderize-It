@@ -12,6 +12,8 @@
 		4408FB492789388700D04245 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4408FB472789388600D04245 /* StoreView.swift */; };
 		44474A90278FD7C40003A4E2 /* TenderizeItChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44474A8F278FD7C30003A4E2 /* TenderizeItChallenge.swift */; };
 		44474A91278FD7C40003A4E2 /* TenderizeItChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44474A8F278FD7C30003A4E2 /* TenderizeItChallenge.swift */; };
+		447089392792840100397270 /* TextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447089382792840000397270 /* TextAlert.swift */; };
+		4470893A2792840100397270 /* TextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447089382792840000397270 /* TextAlert.swift */; };
 		4477873C278F837F00F7381E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4477873B278F837F00F7381E /* GoogleService-Info.plist */; };
 		4477873D278F837F00F7381E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4477873B278F837F00F7381E /* GoogleService-Info.plist */; };
 		44778750278F885D00F7381E /* TenderizeChall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4477874F278F885C00F7381E /* TenderizeChall.swift */; };
@@ -76,6 +78,7 @@
 		4408FB472789388600D04245 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		4408FB4A278CEE3F00D04245 /* Tenderize-It--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Tenderize-It--iOS--Info.plist"; sourceTree = "<group>"; };
 		44474A8F278FD7C30003A4E2 /* TenderizeItChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenderizeItChallenge.swift; sourceTree = "<group>"; };
+		447089382792840000397270 /* TextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlert.swift; sourceTree = "<group>"; };
 		4477873B278F837F00F7381E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4477874F278F885C00F7381E /* TenderizeChall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenderizeChall.swift; sourceTree = "<group>"; };
 		44778752278F937300F7381E /* LeaderBoardEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardEntry.swift; sourceTree = "<group>"; };
@@ -166,6 +169,7 @@
 			children = (
 				44778752278F937300F7381E /* LeaderBoardEntry.swift */,
 				4477874F278F885C00F7381E /* TenderizeChall.swift */,
+				447089382792840000397270 /* TextAlert.swift */,
 				44778756278F941100F7381E /* ViewModel.swift */,
 			);
 			path = Database;
@@ -497,6 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447089392792840100397270 /* TextAlert.swift in Sources */,
 				44778753278F937300F7381E /* LeaderBoardEntry.swift in Sources */,
 				44778757278F941100F7381E /* ViewModel.swift in Sources */,
 				44DBF1152787D99B00131EC2 /* Sounds.swift in Sources */,
@@ -514,6 +519,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4470893A2792840100397270 /* TextAlert.swift in Sources */,
 				44778754278F937300F7381E /* LeaderBoardEntry.swift in Sources */,
 				44778758278F941100F7381E /* ViewModel.swift in Sources */,
 				44DBF1162787D99C00131EC2 /* Sounds.swift in Sources */,

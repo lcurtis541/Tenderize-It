@@ -10,6 +10,7 @@ import AVFoundation
 import Firebase
 
 struct TenderizeItChallenge: View {
+    @Environment(\.presentationMode) var presentationMode
     @State var count: Double = 0
     @State var ham: String = "Hammer"
     @State var perHit: Int = 1
@@ -164,7 +165,7 @@ struct TenderizeItChallenge: View {
             ZStack(alignment: .leading){
                 HStack{
                     Button("Home") {
-                                willMoveToNextScreen.toggle()
+                            self.presentationMode.wrappedValue.dismiss()
                     }
                             .offset(y:(UIScreen.screenHeight * 0.1))
                             .buttonStyle(GrowingButton())
