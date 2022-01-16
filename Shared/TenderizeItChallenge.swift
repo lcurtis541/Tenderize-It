@@ -4,7 +4,6 @@
 //
 //  Created by Landon on 1/12/22.
 //
-
 import SwiftUI
 import AVFoundation
 import Firebase
@@ -72,9 +71,10 @@ struct TenderizeItChallenge: View {
                                         if ((timeRemaining > 0) && firstHit) {
                                             timeRemaining -= 1
                                         }
-                                        else if((timeRemaining == 0) && !willMoveToNextScreenEnd){
+                            else if((timeRemaining == 0) && !willMoveToNextScreenEnd && !UserDefaults.standard.bool(forKey: "CDONE")){
                                             UserDefaults.standard.set(Int(count),forKey:CHALLENGE_KEY)
                                             willMoveToNextScreenEnd.toggle()
+                                            UserDefaults.standard.set(true,forKey:"CDONE")
                                         }
                                         }
                 }
@@ -165,6 +165,7 @@ struct TenderizeItChallenge: View {
             ZStack(alignment: .leading){
                 HStack{
                     Button("Home") {
+                            UserDefaults.standard.set(false,forKey:"CDONE")
                             self.presentationMode.wrappedValue.dismiss()
                     }
                             .offset(y:(UIScreen.screenHeight * 0.1))
@@ -216,6 +217,9 @@ extension View {
                                            ) {
                                                EmptyView()
                                            }
+                                           .onDisappear(){
+                                               
+                                           }
                                        }
                                    }
                                    .navigationViewStyle(.stack)
@@ -228,3 +232,4 @@ struct TenderizeItChallenge_Previews: PreviewProvider {
         TenderizeItChallenge()
     }
 }
+

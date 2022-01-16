@@ -86,20 +86,20 @@ struct StoreView: View {
         }
     }
     func buyFutureHam(){
-        if(!fHamBought && count>40){
+        if(!fHamBought && count>2000){
             UserDefaults.standard.set("FuruteHammer", forKey: HAMMER_KEY)
             hammerText = "Bought"
-            count -= 40
+            count -= 2000
             fHamBought = true
             UserDefaults.standard.set(true, forKey: FHAMMERB_KEY)
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
         }
     }
     func buyMeatHam(){
-        if(!meatHammerBought && count>40){
+        if(!meatHammerBought && count>2000){
             UserDefaults.standard.set("Meat Hammer", forKey: HAMMER_KEY)
             meatHammerText = "Bought"
-            count -= 40
+            count -= 2000
             meatHammerBought = true
             UserDefaults.standard.set(true, forKey: MHAMMERB_KEY)
             UserDefaults.standard.set(count, forKey: COUNT_KEY)

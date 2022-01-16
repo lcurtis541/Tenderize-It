@@ -51,37 +51,41 @@ struct ContentView: View {
             
         VStack{
             HStack(spacing:(UIScreen.screenWidth/2)){
-                VStack{
+                VStack(spacing:(UIScreen.screenWidth/200)){
                     Text("Beats")
                         .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/25))
-                    Text(String(format: "%.0f", count))
-                        .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/25))
+                        .font(.system(size: UIScreen.screenWidth/15, design: .rounded))
+                        .shadow(color:.gray,radius:2)
+                    VStack{
+                        Text(String(format: "%.0f", count))
+                            .lineLimit(1)
+                            .font(.system(size: UIScreen.screenWidth/20, design: .rounded))
+                    }
+                    .padding()
+                    .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/7)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.blue, lineWidth: 4)
+                    )
                 }
-                .padding()
-                .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/5)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.black, lineWidth: 4)
-                )
-                VStack{
+                VStack(spacing:(UIScreen.screenWidth/200)){
                     Text("Multi")
                         .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/25))
-                    Text(String(format: "%.2f", multiplyer))
-                        .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/25))
-                }
-                .padding()
-                .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/5)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.black, lineWidth: 4)
-                )
-            
+                        .font(.system(size: UIScreen.screenWidth/15, design: .rounded))
+                        .shadow(color:.gray,radius:2)
+                    VStack{
+                        Text(String(format: "%.2f", multiplyer))
+                            .lineLimit(1)
+                            .font(.system(size: UIScreen.screenWidth/20, design: .rounded))
+                    }
+                    .padding()
+                    .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/7)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.blue, lineWidth: 4))
+                        }
             }
-            .offset(y:-(UIScreen.screenHeight * 0.35))
+            .offset(y:-(UIScreen.screenHeight * 0.375))
                 
 
             
