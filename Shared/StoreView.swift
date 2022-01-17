@@ -127,7 +127,7 @@ struct StoreView: View {
                 }
             }
             Spacer()
-            Banner(unitID: "ca-app-pub-3940256099942544/2934735716").frame(width:UIScreen.screenWidth, height:UIScreen.screenHeight/12 )
+            Banner(unitID: "ca-app-pub-4056532790569466/7540809053").frame(width:UIScreen.screenWidth, height:UIScreen.screenHeight/12 )
             
         }
     }

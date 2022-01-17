@@ -66,9 +66,10 @@ struct ContentView: View {
                         Text(String(format: "%.0f", count))
                             .lineLimit(1)
                             .font(.system(size: UIScreen.screenWidth/23, design: .rounded))
+                            .fixedSize(horizontal: true, vertical: true)
                             .frame(maxWidth:.infinity)
                             .multilineTextAlignment(.center)
-                            .fixedSize(horizontal: false, vertical: true)
+                            .layoutPriority(1)
                     }
                     .padding()
                     .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/7)
