@@ -15,6 +15,7 @@ let HAMMER_KEY = "Hammer"
 let FHAMMERB_KEY = "FHammer"
 let MHAMMERB_KEY = "MHammer"
 let CHALLENGE_KEY = "Challenge"
+let AUTO_KEY = "Auto"
 
 
 struct ContentView: View {
@@ -39,6 +40,8 @@ struct ContentView: View {
     @State private var showChal = false
     @State var audioCount: Int = 1
     @State var lastHit = Date()
+    @State var autoBeaters = UserDefaults.standard.integer(forKey: AUTO_KEY)
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View{
 
         ZStack{
@@ -56,10 +59,16 @@ struct ContentView: View {
                         .lineLimit(1)
                         .font(.system(size: UIScreen.screenWidth/15, design: .rounded))
                         .shadow(color:.gray,radius:2)
+                        .onReceive(timer) { _ in
+                            count += Double(autoBeaters)
+                        }
                     VStack{
                         Text(String(format: "%.0f", count))
                             .lineLimit(1)
-                            .font(.system(size: UIScreen.screenWidth/20, design: .rounded))
+                            .font(.system(size: UIScreen.screenWidth/23, design: .rounded))
+                            .frame(maxWidth:.infinity)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                     .padding()
                     .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/7)
@@ -76,7 +85,7 @@ struct ContentView: View {
                     VStack{
                         Text(String(format: "%.2f", multiplyer))
                             .lineLimit(1)
-                            .font(.system(size: UIScreen.screenWidth/20, design: .rounded))
+                            .font(.system(size: UIScreen.screenWidth/23, design: .rounded))
                     }
                     .padding()
                     .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/7)
@@ -205,6 +214,7 @@ struct ContentView: View {
     func updateShop(){
         count = UserDefaults.standard.double(forKey: COUNT_KEY)
         ham = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
+        autoBeaters = UserDefaults.standard.integer(forKey: AUTO_KEY)
         if(ham == "Meat Hammer"){
             perHit = 2
         } else{

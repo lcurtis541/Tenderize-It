@@ -14,7 +14,9 @@ struct StoreView: View {
     @State var hammerText:String = UserDefaults.standard.bool(forKey: FHAMMERB_KEY) ? "Bought" : "2000"
     @State var meatHammerBought:Bool = UserDefaults.standard.bool(forKey: MHAMMERB_KEY)
     @State var meatHammerText:String = UserDefaults.standard.bool(forKey: MHAMMERB_KEY) ? "Bought" : "2000"
-
+    var autoPrice = [1000,2000,5000,10000,50000]
+    @State var numAuto = UserDefaults.standard.integer(forKey: AUTO_KEY)
+    @State var autoText = ""
     
 
     var body: some View {
@@ -44,17 +46,21 @@ struct StoreView: View {
             }
             List {
                 HStack{
-                    VStack{
+                    VStack(alignment:.center){
                         Image("FuruteHammer")
                             .resizable()
                             .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
                         Text("Future Hammer")
                             .font(.custom("Futura",size: UIScreen.screenWidth/20))
+                            .frame(maxWidth:.infinity)
                     }
-                    VStack(){
-                        Text("Completely Costmetic. Does not help at all, looks cool tho.")
+                    VStack(alignment:.center){
+                        Text("Completely cosmetic. Does not help at all, looks cool tho.")
                             .font(.custom("Futura",size: UIScreen.screenWidth/25))
                             .frame(maxWidth:.infinity)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(1)
                         Button(action: buyFutureHam){
                             Text(hammerText)
                         }
@@ -62,22 +68,62 @@ struct StoreView: View {
                     }
                 }
                 HStack{
-                    VStack{
+                    VStack(alignment:.center){
                         Image("Meat Hammer")
                             .resizable()
                             .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
                         Text("Meat Hammer")
                             .font(.custom("Futura",size: UIScreen.screenWidth/20))
+                            .frame(maxWidth:.infinity)
                     }
-                    VStack(){
+                    VStack(alignment:.center){
                         Text("2x for every beat! Combines with the multiplyer too.")
                             .font(.custom("Futura",size: UIScreen.screenWidth/25))
                             .frame(maxWidth:.infinity)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(1)
                         Button(action: buyMeatHam){
                             Text(meatHammerText)
                         }
                         .buttonStyle(GrowingButton())
                     }
+                }
+                HStack{
+                    VStack(alignment:.center){
+                        Image("AutoClicker")
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
+                        Text("Auto Clicker")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/20))
+                            .frame(maxWidth:.infinity)
+                    }
+                    VStack(alignment:.center){
+                        Text("Beats your meat for you! 1 click per second. Very helpful.")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/25))
+                            .frame(maxWidth:.infinity)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(1)
+                        Button(action: buyAuto){
+                            Text(String(autoText))
+                        }
+                        .buttonStyle(GrowingButton())
+                        .onAppear(){
+                            if(numAuto == 4){
+                                self.autoText = "Bought"
+                            } else{
+                                self.autoText = String(autoPrice[numAuto])
+                            }
+
+                        }
+                        Text("Amount:\(numAuto)  Max:4")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/25))
+                            .frame(maxWidth:.infinity)
+                            .multilineTextAlignment(.center)
+                            .padding(1)
+                    }
+                    
                 }
             }
             Spacer()
@@ -103,6 +149,19 @@ struct StoreView: View {
             meatHammerBought = true
             UserDefaults.standard.set(true, forKey: MHAMMERB_KEY)
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
+        }
+    }
+    func buyAuto(){
+        if(Int(count)>autoPrice[numAuto] && numAuto != 4){
+            count -= Double(autoPrice[numAuto])
+            UserDefaults.standard.set(count, forKey: COUNT_KEY)
+            numAuto += 1
+            UserDefaults.standard.set(numAuto, forKey: AUTO_KEY)
+            if(numAuto == 4){
+                self.autoText = "Bought"
+            } else{
+                self.autoText = String(autoPrice[numAuto])
+            }
         }
     }
     func chooseHam(hammer: String){

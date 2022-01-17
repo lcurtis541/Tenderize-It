@@ -33,7 +33,11 @@ struct TenderizeItChallenge: View {
     @State var lastHit = Date()
     @State var firstHit: Bool = false
     @State var timeRemaining = 60
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 1, on: .main, in: .default)
+    
+    init(){
+        _ = timer.connect()
+    }
     var body: some View{
 
         ZStack{
@@ -43,50 +47,53 @@ struct TenderizeItChallenge: View {
                     .frame(width: UIScreen.screenWidth * 1.1, height: UIScreen.screenHeight * 1.1)
                     .offset(x: -(UIScreen.screenWidth/20),y:-(UIScreen.screenHeight/10))
             }
-            
-        VStack{
-            HStack(spacing:(UIScreen.screenWidth/2)){
-                VStack{
-                    Text("Beats")
-                        .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/25))
-                    Text(String(format: "%.0f", count))
-                        .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/25))
+            VStack{
+                HStack(spacing:(UIScreen.screenWidth/2)){
+                    VStack(spacing:(UIScreen.screenWidth/200)){
+                        Text("Beats")
+                            .lineLimit(1)
+                            .font(.system(size: UIScreen.screenWidth/15, design: .rounded))
+                            .shadow(color:.gray,radius:2)
+                        VStack{
+                            Text(String(format: "%.0f", count))
+                                .lineLimit(1)
+                                .font(.system(size: UIScreen.screenWidth/20, design: .rounded))
+                        }
+                        .padding()
+                        .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/7)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.blue, lineWidth: 4)
+                        )
+                    }
+                    VStack(spacing:(UIScreen.screenWidth/200)){
+                        Text("Time")
+                            .lineLimit(1)
+                            .font(.system(size: UIScreen.screenWidth/15, design: .rounded))
+                            .shadow(color:.gray,radius:2)
+                        VStack{
+                            Text(String(timeRemaining) + " s")
+                                .lineLimit(1)
+                                .font(.system(size: UIScreen.screenWidth/20, design: .rounded))
+                                .onReceive(timer) { _ in
+                                    if ((timeRemaining > 0) && firstHit) {
+                                        timeRemaining -= 1
+                                    }
+                        else if((timeRemaining == 0) && !willMoveToNextScreenEnd && !UserDefaults.standard.bool(forKey: "CDONE")){
+                                        UserDefaults.standard.set(Int(count),forKey:CHALLENGE_KEY)
+                                        willMoveToNextScreenEnd.toggle()
+                                        UserDefaults.standard.set(true,forKey:"CDONE")
+                                    }
+                                    }
+                        }
+                        .padding()
+                        .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/7)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.blue, lineWidth: 4))
+                            }
                 }
-                .padding()
-                .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/5)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.black, lineWidth: 4)
-                )
-                VStack{
-                    Text("Time")
-                        .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/25))
-                    Text("\(timeRemaining)")
-                        .lineLimit(1)
-                        .font(.system(size: UIScreen.screenWidth/25))
-                        .onReceive(timer) { _ in
-                                        if ((timeRemaining > 0) && firstHit) {
-                                            timeRemaining -= 1
-                                        }
-                            else if((timeRemaining == 0) && !willMoveToNextScreenEnd && !UserDefaults.standard.bool(forKey: "CDONE")){
-                                            UserDefaults.standard.set(Int(count),forKey:CHALLENGE_KEY)
-                                            willMoveToNextScreenEnd.toggle()
-                                            UserDefaults.standard.set(true,forKey:"CDONE")
-                                        }
-                                        }
-                }
-                .padding()
-                .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/5)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.black, lineWidth: 4)
-                )
-            
-            }
-            .offset(y:-(UIScreen.screenHeight * 0.35))
+                .offset(y:-(UIScreen.screenHeight * 0.375))
                 
 
             
