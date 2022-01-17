@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct TenderizeChall: View {
-    @ObservedObject private var viewModel = ViewModel()
+    @StateObject private var viewModel = ViewModel()
     @Environment(\.presentationMode) var presentationMode
     @State var textString = ""
     @State private var showDialog = true
@@ -62,13 +62,17 @@ struct TenderizeChall: View {
                         Text(itemlbe.name)
                             .alignmentGuide(.leading) {d in d[.leading]}
                             .lineLimit(1)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         Text("\(itemlbe.score)")
-                            .frame(maxWidth: .infinity, alignment: .trailing)
                             .alignmentGuide(.trailing) {d in d[.trailing]}
                         }
                     }
                 }.id(UUID())
-                    .onAppear(){ self.viewModel.fetchData()}
+                    .onAppear(){
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
+                            self.viewModel.fetchData()
+                        }
+                    }
             
         }
     }

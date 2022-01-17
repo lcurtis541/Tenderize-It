@@ -98,53 +98,7 @@ struct ContentView: View {
                 
 
             
-            Button (action: {
-                self.count += multiplyer * Double(perHit)
-                UserDefaults.standard.set(count, forKey: COUNT_KEY)
-                switch audioCount{
-                case 1:
-                    audioPlayer1?.play()
-                    audioCount = 2
-                case 2:
-                    audioPlayer2?.play()
-                    audioCount = 3
-                case 3:
-                    audioPlayer3?.play()
-                    audioCount = 4
-                case 4:
-                    audioPlayer1?.play()
-                    audioCount = 5
-                case 5:
-                    audioPlayer2?.play()
-                    audioCount = 6
-                case 6:
-                    audioPlayer3?.play()
-                    audioCount = 7
-                case 7:
-                    audioPlayer1?.play()
-                    audioCount = 8
-                case 8:
-                    audioPlayer2?.play()
-                    audioCount = 9
-                case 9:
-                    audioPlayer3?.play()
-                    audioCount = 10
-                case 10:
-                    audioPlayer3?.play()
-                    audioCount = 1
-                default:
-                    break
-                    
-                }
-                let diffComponents = Date().timeIntervalSinceReferenceDate-lastHit.timeIntervalSinceReferenceDate
-                if(diffComponents < 3.0){
-                    multiplyer += 0.001
-                } else{
-                    multiplyer = 1.0
-                }
-                lastHit = Date()
-                
-                    },label: {
+            Button (action: beatMeat ,label: {
                 Image("steak")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -197,11 +151,40 @@ struct ContentView: View {
         }
         .offset(y:UIScreen.screenHeight/7)
         ZStack(alignment: .leading){
-            Image(ham)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.screenHeight/5, height: UIScreen.screenHeight/5)
-                .rotationEffect(.degrees(degree))
+            Button (action: beatMeat ,label: {
+                Image(ham)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width:UIScreen.screenHeight/5, height: UIScreen.screenHeight/5)
+                    .rotationEffect(.degrees(degree))
+                
+            })
+                .padding(30)
+                //.buttonStyle(PlainButtonStyle())
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 0)
+                        .onChanged({ _ in
+                            self.degree = 60
+                            
+                        })
+                        .onEnded({ _ in
+                            self.degree = 0
+                        })
+                )
+                .onAppear {
+                    let sound = Bundle.main.path(forResource: "Beat", ofType: "wav")
+                    self.audioPlayer1 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer2 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer3 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer4 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer5 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer6 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer7 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer8 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer9 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                    self.audioPlayer10 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
+                       
+                       }
         }
         .offset(x:-(UIScreen.screenHeight/13),y:UIScreen.screenHeight/8)
 
@@ -220,10 +203,55 @@ struct ContentView: View {
         } else{
             perHit = 1
         }
-        
-
     }
-}
+    func beatMeat(){
+        self.count += multiplyer * Double(perHit)
+        UserDefaults.standard.set(count, forKey: COUNT_KEY)
+        switch audioCount{
+        case 1:
+            audioPlayer1?.play()
+            audioCount = 2
+        case 2:
+            audioPlayer2?.play()
+            audioCount = 3
+        case 3:
+            audioPlayer3?.play()
+            audioCount = 4
+        case 4:
+            audioPlayer1?.play()
+            audioCount = 5
+        case 5:
+            audioPlayer2?.play()
+            audioCount = 6
+        case 6:
+            audioPlayer3?.play()
+            audioCount = 7
+        case 7:
+            audioPlayer1?.play()
+            audioCount = 8
+        case 8:
+            audioPlayer2?.play()
+            audioCount = 9
+        case 9:
+            audioPlayer3?.play()
+            audioCount = 10
+        case 10:
+            audioPlayer3?.play()
+            audioCount = 1
+        default:
+            break
+            
+        }
+        let diffComponents = Date().timeIntervalSinceReferenceDate-lastHit.timeIntervalSinceReferenceDate
+        if(diffComponents < 3.0){
+            multiplyer += 0.001
+        } else{
+            multiplyer = 1.0
+        }
+        lastHit = Date()
+        
+            }
+    }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {        Group {

@@ -38,7 +38,7 @@ struct StoreView: View {
                     }.menuStyle(MenuStyling())
                     Menu {
                         Button("Default", action: chooseBackground)
-                        Button("Bruh", action: chooseBackground)
+                        //Button("Bruh", action: chooseBackground)
                     } label: {
                         Text("Choose Background")
                     }
