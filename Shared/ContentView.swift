@@ -16,6 +16,7 @@ let FHAMMERB_KEY = "FHammer"
 let MHAMMERB_KEY = "MHammer"
 let CHALLENGE_KEY = "Challenge"
 let AUTO_KEY = "Auto"
+let TWOX_KEY = "2x"
 
 
 struct ContentView: View {
@@ -23,7 +24,8 @@ struct ContentView: View {
     @State var count: Double = UserDefaults.standard.double(forKey: COUNT_KEY)
     @State var ham: String = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
     @State var perHit: Int = (UserDefaults.standard.string(forKey: HAMMER_KEY) == "Meat Hammer") ? 2 : 1
-    @State var multiplyer: Double = 1
+    @State var multiBase: Double = (UserDefaults.standard.bool(forKey: TWOX_KEY) == true) ? 2.0 : 1.0
+    @State var multiplyer: Double = (UserDefaults.standard.bool(forKey: TWOX_KEY) == true) ? 2.0 : 1.0
     @State private var willMoveToNextScreen = false
     @State var degree: Double = 0
     @State var audioPlayer1: AVAudioPlayer!
@@ -40,6 +42,7 @@ struct ContentView: View {
     @State private var showChal = false
     @State var audioCount: Int = 1
     @State var lastHit = Date()
+    let numForm = NumberFormatter()
     @State var autoBeaters = UserDefaults.standard.integer(forKey: AUTO_KEY)
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View{
@@ -50,7 +53,8 @@ struct ContentView: View {
                     .resizable()
                     .frame(width: UIScreen.screenWidth * 1.1, height: UIScreen.screenHeight * 1.1)
                     .offset(x: -(UIScreen.screenWidth/20),y:-(UIScreen.screenHeight/10))
-            }
+            } .onAppear(){
+                numForm.numberStyle = .decimal            }
             
         VStack{
             HStack(spacing:(UIScreen.screenWidth/2)){
@@ -63,7 +67,7 @@ struct ContentView: View {
                             count += Double(autoBeaters)
                         }
                     VStack{
-                        Text(String(format: "%.0f", count))
+                        Text(numForm.string(from: NSNumber(value: Int(count)))!)
                             .lineLimit(1)
                             .font(.system(size: UIScreen.screenWidth/23, design: .rounded))
                             .fixedSize(horizontal: true, vertical: true)
@@ -199,6 +203,8 @@ struct ContentView: View {
         count = UserDefaults.standard.double(forKey: COUNT_KEY)
         ham = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
         autoBeaters = UserDefaults.standard.integer(forKey: AUTO_KEY)
+        multiBase = (UserDefaults.standard.bool(forKey: TWOX_KEY) == true) ? 2.0 : 1.0
+        multiplyer = (UserDefaults.standard.bool(forKey: TWOX_KEY) == true) ? 2.0 : 1.0
         if(ham == "Meat Hammer"){
             perHit = 2
         } else{
@@ -247,7 +253,7 @@ struct ContentView: View {
         if(diffComponents < 3.0){
             multiplyer += 0.001
         } else{
-            multiplyer = 1.0
+            multiplyer = multiBase
         }
         lastHit = Date()
         

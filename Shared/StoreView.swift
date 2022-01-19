@@ -17,7 +17,11 @@ struct StoreView: View {
     var autoPrice = [1000,2000,5000,10000,50000]
     @State var numAuto = UserDefaults.standard.integer(forKey: AUTO_KEY)
     @State var autoText = ""
+    @State var twoxText: String = UserDefaults.standard.bool(forKey: TWOX_KEY) ? "Bought" : "10k"
+    @State var twoxBought:Bool = UserDefaults.standard.bool(forKey: TWOX_KEY)
     
+    
+    let numForm = NumberFormatter()
 
     var body: some View {
         VStack{
@@ -27,22 +31,40 @@ struct StoreView: View {
                         .font(.title)
                     Text(String(format: "%.0f", count))
                         .font(.title)
-                    }
+                } .onAppear(){
+                    numForm.numberStyle = .decimal                }
                 HStack{
                     Menu {
                         Button("Default", action:{ UserDefaults.standard.set("Hammer", forKey: HAMMER_KEY)})
                         Button("Future Hammer", action:{UserDefaults.standard.set("FuruteHammer", forKey: HAMMER_KEY)}).disabled(!fHamBought)
                         Button("Meat Hammer", action:{UserDefaults.standard.set("Meat Hammer", forKey: HAMMER_KEY)}).disabled(!meatHammerBought)
                     }label: {
-                        Text("Choose Hammer")
-                    }.menuStyle(MenuStyling())
+                        Text("Hammer")
+                    }
+                        .padding(7)
+                        .background(Color(red: 100/255, green: 73/255, blue: 36/255))
+                        .foregroundColor(.white)
+                        .clipShape(Capsule())
                     Menu {
                         Button("Default", action: chooseBackground)
                         //Button("Bruh", action: chooseBackground)
                     } label: {
-                        Text("Choose Background")
+                        Text("Meat")
                     }
-                }
+                    .padding(7)
+                    .background(Color.red)
+                    .foregroundColor(.white)
+                    .clipShape(Capsule())
+                    Menu {
+                        Button("Default", action: chooseBackground)
+                        //Button("Bruh", action: chooseBackground)
+                    } label: {
+                        Text("Background")
+                    }
+                    .padding(7)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .clipShape(Capsule())                }
             }
             List {
                 HStack{
@@ -125,7 +147,27 @@ struct StoreView: View {
                     }
                     
                 }
-            }
+                HStack{
+                    VStack(alignment:.center){
+                        Text("2x")
+                            .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
+                        Text("2x Multiplyer")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/20))
+                            .frame(maxWidth:.infinity)
+                    }
+                    VStack(alignment:.center){
+                        Text("Multi starts and resets back to 2.0.")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/25))
+                            .frame(maxWidth:.infinity)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(1)
+                        Button(action: buy2x){
+                            Text(twoxText)
+                        }
+                        .buttonStyle(GrowingButton())
+                    }
+                }            }
             Spacer()
             Banner(unitID: "ca-app-pub-4056532790569466/7540809053").frame(width:UIScreen.screenWidth, height:UIScreen.screenHeight/12 )
             
@@ -164,6 +206,16 @@ struct StoreView: View {
             }
         }
     }
+    func buy2x(){
+        if(!twoxBought && count>10000){
+            UserDefaults.standard.set(true, forKey: TWOX_KEY)
+            twoxText = "Bought"
+            count -= 10000
+            twoxBought = true
+            UserDefaults.standard.set(count, forKey: COUNT_KEY)
+        }
+        
+    }
     func chooseHam(hammer: String){
         UserDefaults.standard.set(hammer, forKey: HAMMER_KEY)
     }
@@ -191,6 +243,9 @@ struct GrowingButton: ButtonStyle {
 struct MenuStyling: MenuStyle {
     func makeBody(configuration: Configuration) -> some View {
             Menu(configuration)
-                .foregroundColor(.red)
+                .padding(7)
+                .foregroundColor(.white)
+                .clipShape(Capsule())
+
         }
 }
