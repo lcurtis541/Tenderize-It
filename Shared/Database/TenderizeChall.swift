@@ -46,7 +46,11 @@ struct TenderizeChall: View {
                           .padding(.horizontal)
                     Button("Submit",action: {
                         viewModel.setData(enterName: textString, enterScore: UserDefaults.standard.integer(forKey: CHALLENGE_KEY))
-                        subBut.toggle()}
+                        subBut.toggle()
+                        textString = ""
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+
+                        }
                     ).buttonStyle(GrowingButton())
                     .disabled(subBut)
                     }
@@ -77,6 +81,8 @@ struct TenderizeChall: View {
         }
     }
 }
+
+
 struct TenderizeChall_Previews: PreviewProvider {
     static var previews: some View {
         TenderizeChall()

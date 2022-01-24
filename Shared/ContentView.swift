@@ -11,18 +11,26 @@ import Firebase
 
 var player:AVAudioPlayer?
 let COUNT_KEY = "Count"
+let BACK_KEY = "Back"
 let HAMMER_KEY = "Hammer"
 let FHAMMERB_KEY = "FHammer"
 let MHAMMERB_KEY = "MHammer"
 let CHALLENGE_KEY = "Challenge"
 let AUTO_KEY = "Auto"
 let TWOX_KEY = "2x"
+let CHAIN_KEY = "ChainBBY"
+let MEAT_KEY = "MEAT"
+let OGBACK_KEY = "I mean OG"
+let GHAMMER_KEY = "ALL I SEE IS GOLD"
 
 
 struct ContentView: View {
 
     @State var count: Double = UserDefaults.standard.double(forKey: COUNT_KEY)
     @State var ham: String = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
+    @State var meat: String = UserDefaults.standard.string(forKey: MEAT_KEY) ?? "steak"
+    @State var background: String = UserDefaults.standard.string(forKey: BACK_KEY) ?? "Background"
+    @State var meatHit: Double = (UserDefaults.standard.bool(forKey: CHAIN_KEY) == true) ? 10.0 : 1.0
     @State var perHit: Int = (UserDefaults.standard.string(forKey: HAMMER_KEY) == "Meat Hammer") ? 2 : 1
     @State var multiBase: Double = (UserDefaults.standard.bool(forKey: TWOX_KEY) == true) ? 2.0 : 1.0
     @State var multiplyer: Double = (UserDefaults.standard.bool(forKey: TWOX_KEY) == true) ? 2.0 : 1.0
@@ -49,7 +57,7 @@ struct ContentView: View {
 
         ZStack{
             GeometryReader { geo in
-                Image("Background")
+                Image(background)
                     .resizable()
                     .frame(width: UIScreen.screenWidth * 1.1, height: UIScreen.screenHeight * 1.1)
                     .offset(x: -(UIScreen.screenWidth/20),y:-(UIScreen.screenHeight/10))
@@ -65,7 +73,12 @@ struct ContentView: View {
                         .shadow(color:.gray,radius:2)
                         .onReceive(timer) { _ in
                             count += Double(autoBeaters)
-                        }
+                            let diffComponents = Date().timeIntervalSinceReferenceDate-lastHit.timeIntervalSinceReferenceDate
+                            if(diffComponents < 3.0){
+                                multiplyer += 0.001
+                            } else{
+                                multiplyer = multiBase
+                            }                        }
                     VStack{
                         Text(numForm.string(from: NSNumber(value: Int(count)))!)
                             .lineLimit(1)
@@ -104,7 +117,7 @@ struct ContentView: View {
 
             
             Button (action: beatMeat ,label: {
-                Image("steak")
+                Image(meat)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width:UIScreen.screenHeight/5, height: UIScreen.screenHeight/5)
@@ -205,14 +218,23 @@ struct ContentView: View {
         autoBeaters = UserDefaults.standard.integer(forKey: AUTO_KEY)
         multiBase = (UserDefaults.standard.bool(forKey: TWOX_KEY) == true) ? 2.0 : 1.0
         multiplyer = (UserDefaults.standard.bool(forKey: TWOX_KEY) == true) ? 2.0 : 1.0
+        meat = UserDefaults.standard.string(forKey: MEAT_KEY) ?? "steak"
+        background = UserDefaults.standard.string(forKey: BACK_KEY) ?? "Background"
         if(ham == "Meat Hammer"){
             perHit = 2
+        } else if( ham == "Gold Hammer"){
+            perHit = 5
         } else{
             perHit = 1
         }
+        if(meat == "CSteak"){
+            meatHit = 10
+        } else{
+            meatHit = 1
+        }
     }
     func beatMeat(){
-        self.count += multiplyer * Double(perHit)
+        self.count += multiplyer * Double(perHit) * meatHit
         UserDefaults.standard.set(count, forKey: COUNT_KEY)
         switch audioCount{
         case 1:

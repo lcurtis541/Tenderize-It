@@ -34,6 +34,7 @@ struct TenderizeItChallenge: View {
     @State var firstHit: Bool = false
     @State var timeRemaining = 60
     let timer = Timer.publish(every: 1, on: .main, in: .default)
+    @State var showAlert = true
     
     init(){
         _ = timer.connect()
@@ -64,6 +65,11 @@ struct TenderizeItChallenge: View {
                         .overlay(
                             RoundedRectangle(cornerRadius: 16)
                                 .stroke(Color.blue, lineWidth: 4)
+                        )
+                    } .alert(isPresented: $showAlert){
+                        Alert(
+                            title: Text("Time starts when you hit!"),
+                            message: Text("Get the best score you can for the live leaderboard!")
                         )
                     }
                     VStack(spacing:(UIScreen.screenWidth/200)){

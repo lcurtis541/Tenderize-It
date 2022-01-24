@@ -19,8 +19,12 @@ struct StoreView: View {
     @State var autoText = ""
     @State var twoxText: String = UserDefaults.standard.bool(forKey: TWOX_KEY) ? "Bought" : "10k"
     @State var twoxBought:Bool = UserDefaults.standard.bool(forKey: TWOX_KEY)
-    
-    
+    @State var chainText: String = UserDefaults.standard.bool(forKey: CHAIN_KEY) ? "Bought" : "50k"
+    @State var chainBought:Bool = UserDefaults.standard.bool(forKey: CHAIN_KEY)
+    @State var OGBackText: String = UserDefaults.standard.bool(forKey: OGBACK_KEY) ? "Bought" : "50k"
+    @State var OGBackBought:Bool = UserDefaults.standard.bool(forKey: OGBACK_KEY)
+    @State var goldHammerBought:Bool = UserDefaults.standard.bool(forKey: GHAMMER_KEY)
+    @State var goldHammerText:String = UserDefaults.standard.bool(forKey: GHAMMER_KEY) ? "Bought" : "75k"
     let numForm = NumberFormatter()
 
     var body: some View {
@@ -29,8 +33,9 @@ struct StoreView: View {
                 HStack(){
                     Text("The Shop")
                         .font(.title)
-                    Text(String(format: "%.0f", count))
+                    Text(numForm.string(from: NSNumber(value: Int(count)))!)
                         .font(.title)
+                        .foregroundColor(Color.blue)
                 } .onAppear(){
                     numForm.numberStyle = .decimal                }
                 HStack{
@@ -38,7 +43,7 @@ struct StoreView: View {
                         Button("Default", action:{ UserDefaults.standard.set("Hammer", forKey: HAMMER_KEY)})
                         Button("Future Hammer", action:{UserDefaults.standard.set("FuruteHammer", forKey: HAMMER_KEY)}).disabled(!fHamBought)
                         Button("Meat Hammer", action:{UserDefaults.standard.set("Meat Hammer", forKey: HAMMER_KEY)}).disabled(!meatHammerBought)
-                    }label: {
+                        Button("Gold Hammer", action:{UserDefaults.standard.set("Gold Hammer", forKey: HAMMER_KEY)}).disabled(!goldHammerBought)                    }label: {
                         Text("Hammer")
                     }
                         .padding(7)
@@ -46,8 +51,8 @@ struct StoreView: View {
                         .foregroundColor(.white)
                         .clipShape(Capsule())
                     Menu {
-                        Button("Default", action: chooseBackground)
-                        //Button("Bruh", action: chooseBackground)
+                        Button("Default", action:{UserDefaults.standard.set("steak", forKey: MEAT_KEY)})
+                        Button("Iced Meat", action:{UserDefaults.standard.set("CSteak", forKey: MEAT_KEY)}).disabled(!chainBought)
                     } label: {
                         Text("Meat")
                     }
@@ -56,8 +61,8 @@ struct StoreView: View {
                     .foregroundColor(.white)
                     .clipShape(Capsule())
                     Menu {
-                        Button("Default", action: chooseBackground)
-                        //Button("Bruh", action: chooseBackground)
+                        Button("Default", action:{UserDefaults.standard.set("Background", forKey: BACK_KEY)})
+                        Button("OG Background", action:{UserDefaults.standard.set("OGBackground", forKey: BACK_KEY)}).disabled(!OGBackBought)
                     } label: {
                         Text("Background")
                     }
@@ -107,6 +112,51 @@ struct StoreView: View {
                             .padding(1)
                         Button(action: buyMeatHam){
                             Text(meatHammerText)
+                        }
+                        .buttonStyle(GrowingButton())
+                    }
+                }
+                HStack{
+                    VStack(alignment:.center){
+                        Image("Gold Hammer")
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
+                        Text("Gold Hammer")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/20))
+                            .frame(maxWidth:.infinity)
+                    }
+                    VStack(alignment:.center){
+                        Text("Its made of Gold! Thats awesome, 5x on hits.")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/25))
+                            .frame(maxWidth:.infinity)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(1)
+                        Button(action: buyGoldHam){
+                            Text(goldHammerText)
+                        }
+                        .buttonStyle(GrowingButton())
+                    }
+                }
+                
+                HStack{
+                    VStack(alignment:.center){
+                        Image("Gold Hammer")
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
+                        Text("Gold Hammer")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/20))
+                            .frame(maxWidth:.infinity)
+                    }
+                    VStack(alignment:.center){
+                        Text("Its made of Gold! Thats awesome, 5x on hits.")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/25))
+                            .frame(maxWidth:.infinity)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(1)
+                        Button(action: buyGoldHam){
+                            Text(goldHammerText)
                         }
                         .buttonStyle(GrowingButton())
                     }
@@ -167,7 +217,52 @@ struct StoreView: View {
                         }
                         .buttonStyle(GrowingButton())
                     }
-                }            }
+                }
+                HStack{
+                    VStack(alignment:.center){
+                        Image("CSteak")
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
+                        Text("Iced Steak")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/20))
+                            .frame(maxWidth:.infinity)
+                    }
+                    VStack(alignment:.center){
+                        Text("Nothing much to say. Too cool. 10x per hit")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/25))
+                            .frame(maxWidth:.infinity)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(1)
+                        Button(action: buyChain){
+                            Text(chainText)
+                        }
+                        .buttonStyle(GrowingButton())
+                    }
+                }
+                HStack{
+                    VStack(alignment:.center){
+                        Image("OGBackground")
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
+                        Text("OG Background")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/20))
+                            .frame(maxWidth:.infinity)
+                    }
+                    VStack(alignment:.center){
+                        Text("The original background from the android game.")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/25))
+                            .frame(maxWidth:.infinity)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(1)
+                        Button(action: buyOGBack){
+                            Text(OGBackText)
+                        }
+                        .buttonStyle(GrowingButton())
+                    }
+                }
+            }
             Spacer()
             Banner(unitID: "ca-app-pub-4056532790569466/7540809053").frame(width:UIScreen.screenWidth, height:UIScreen.screenHeight/12 )
             
@@ -193,6 +288,16 @@ struct StoreView: View {
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
         }
     }
+    func buyGoldHam(){
+        if(!goldHammerBought && count>5000){
+            UserDefaults.standard.set("Gold Hammer", forKey: HAMMER_KEY)
+            goldHammerText = "Bought"
+            count -= 5000
+            goldHammerBought = true
+            UserDefaults.standard.set(true, forKey: GHAMMER_KEY)
+            UserDefaults.standard.set(count, forKey: COUNT_KEY)
+        }
+    }
     func buyAuto(){
         if(Int(count)>autoPrice[numAuto] && numAuto != 4){
             count -= Double(autoPrice[numAuto])
@@ -215,6 +320,26 @@ struct StoreView: View {
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
         }
         
+    }
+    func buyChain(){
+        if(!chainBought && count>50000){
+            UserDefaults.standard.set("CSteak", forKey: MEAT_KEY)
+            chainText = "Bought"
+            count -= 50000
+            chainBought = true
+            UserDefaults.standard.set(true, forKey: CHAIN_KEY)
+            UserDefaults.standard.set(count, forKey: COUNT_KEY)
+        }
+    }
+    func buyOGBack(){
+        if(!OGBackBought && count>50000){
+            UserDefaults.standard.set("OGBackground", forKey: BACK_KEY)
+            OGBackText = "Bought"
+            count -= 50000
+            OGBackBought = true
+            UserDefaults.standard.set(true, forKey: OGBACK_KEY)
+            UserDefaults.standard.set(count, forKey: COUNT_KEY)
+        }
     }
     func chooseHam(hammer: String){
         UserDefaults.standard.set(hammer, forKey: HAMMER_KEY)
