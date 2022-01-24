@@ -14,7 +14,7 @@ struct StoreView: View {
     @State var hammerText:String = UserDefaults.standard.bool(forKey: FHAMMERB_KEY) ? "Bought" : "2000"
     @State var meatHammerBought:Bool = UserDefaults.standard.bool(forKey: MHAMMERB_KEY)
     @State var meatHammerText:String = UserDefaults.standard.bool(forKey: MHAMMERB_KEY) ? "Bought" : "2000"
-    var autoPrice = [1000,2000,5000,10000,50000]
+    var autoPrice = [1000,2000,5000,10000,50000,100000,500000,1000000]
     @State var numAuto = UserDefaults.standard.integer(forKey: AUTO_KEY)
     @State var autoText = ""
     @State var twoxText: String = UserDefaults.standard.bool(forKey: TWOX_KEY) ? "Bought" : "10k"
@@ -25,6 +25,8 @@ struct StoreView: View {
     @State var OGBackBought:Bool = UserDefaults.standard.bool(forKey: OGBACK_KEY)
     @State var goldHammerBought:Bool = UserDefaults.standard.bool(forKey: GHAMMER_KEY)
     @State var goldHammerText:String = UserDefaults.standard.bool(forKey: GHAMMER_KEY) ? "Bought" : "75k"
+    @State var thorBought:Bool = UserDefaults.standard.bool(forKey: THOR_KEY)
+    @State var thorText:String = UserDefaults.standard.bool(forKey: THOR_KEY) ? "Bought" : "100k"
     let numForm = NumberFormatter()
 
     var body: some View {
@@ -43,7 +45,9 @@ struct StoreView: View {
                         Button("Default", action:{ UserDefaults.standard.set("Hammer", forKey: HAMMER_KEY)})
                         Button("Future Hammer", action:{UserDefaults.standard.set("FuruteHammer", forKey: HAMMER_KEY)}).disabled(!fHamBought)
                         Button("Meat Hammer", action:{UserDefaults.standard.set("Meat Hammer", forKey: HAMMER_KEY)}).disabled(!meatHammerBought)
-                        Button("Gold Hammer", action:{UserDefaults.standard.set("Gold Hammer", forKey: HAMMER_KEY)}).disabled(!goldHammerBought)                    }label: {
+                        Button("Gold Hammer", action:{UserDefaults.standard.set("Gold Hammer", forKey: HAMMER_KEY)}).disabled(!goldHammerBought)
+                        Button("Mjölnir", action:{UserDefaults.standard.set("Mjölnir", forKey: HAMMER_KEY)}).disabled(!thorBought)
+                    }label: {
                         Text("Hammer")
                     }
                         .padding(7)
@@ -141,22 +145,22 @@ struct StoreView: View {
                 
                 HStack{
                     VStack(alignment:.center){
-                        Image("Gold Hammer")
+                        Image("Mjölnir")
                             .resizable()
                             .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
-                        Text("Gold Hammer")
+                        Text("Mjölnir")
                             .font(.custom("Futura",size: UIScreen.screenWidth/20))
                             .frame(maxWidth:.infinity)
                     }
                     VStack(alignment:.center){
-                        Text("Its made of Gold! Thats awesome, 5x on hits.")
+                        Text("Thor would be proud, 10x on hits.")
                             .font(.custom("Futura",size: UIScreen.screenWidth/25))
                             .frame(maxWidth:.infinity)
                             .multilineTextAlignment(.center)
                             .fixedSize(horizontal: false, vertical: true)
                             .padding(1)
-                        Button(action: buyGoldHam){
-                            Text(goldHammerText)
+                        Button(action: buyThor){
+                            Text(thorText)
                         }
                         .buttonStyle(GrowingButton())
                     }
@@ -182,14 +186,14 @@ struct StoreView: View {
                         }
                         .buttonStyle(GrowingButton())
                         .onAppear(){
-                            if(numAuto == 4){
+                            if(numAuto == 8){
                                 self.autoText = "Bought"
                             } else{
                                 self.autoText = String(autoPrice[numAuto])
                             }
 
                         }
-                        Text("Amount:\(numAuto)  Max:4")
+                        Text("Amount:\(numAuto)  Max:8")
                             .font(.custom("Futura",size: UIScreen.screenWidth/25))
                             .frame(maxWidth:.infinity)
                             .multilineTextAlignment(.center)
@@ -298,8 +302,18 @@ struct StoreView: View {
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
         }
     }
+    func buyThor(){
+        if(!thorBought && count>100000){
+            UserDefaults.standard.set("Mjölnir", forKey: HAMMER_KEY)
+            thorText = "Bought"
+            count -= 5000
+            thorBought = true
+            UserDefaults.standard.set(true, forKey: THOR_KEY)
+            UserDefaults.standard.set(count, forKey: COUNT_KEY)
+        }
+    }
     func buyAuto(){
-        if(Int(count)>autoPrice[numAuto] && numAuto != 4){
+        if(Int(count)>autoPrice[numAuto] && numAuto != 8){
             count -= Double(autoPrice[numAuto])
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
             numAuto += 1

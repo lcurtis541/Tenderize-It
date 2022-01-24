@@ -77,6 +77,7 @@ struct TenderizeChall: View {
                             self.viewModel.fetchData()
                         }
                     }
+            Banner(unitID: "ca-app-pub-4056532790569466/2301143989").frame(width:UIScreen.screenWidth, height:UIScreen.screenHeight/12 )
             
         }
     }

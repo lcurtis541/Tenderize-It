@@ -22,6 +22,7 @@ let CHAIN_KEY = "ChainBBY"
 let MEAT_KEY = "MEAT"
 let OGBACK_KEY = "I mean OG"
 let GHAMMER_KEY = "ALL I SEE IS GOLD"
+let THOR_KEY = "Thor"
 
 
 struct ContentView: View {
@@ -89,7 +90,7 @@ struct ContentView: View {
                             .layoutPriority(1)
                     }
                     .padding()
-                    .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/7)
+                    .frame(width:UIScreen.screenWidth/4.5,height:UIScreen.screenWidth/7)
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
                             .stroke(Color.blue, lineWidth: 4)
@@ -106,7 +107,7 @@ struct ContentView: View {
                             .font(.system(size: UIScreen.screenWidth/23, design: .rounded))
                     }
                     .padding()
-                    .frame(width:UIScreen.screenWidth/5,height:UIScreen.screenWidth/7)
+                    .frame(width:UIScreen.screenWidth/4.5,height:UIScreen.screenWidth/7)
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
                             .stroke(Color.blue, lineWidth: 4))
@@ -224,6 +225,8 @@ struct ContentView: View {
             perHit = 2
         } else if( ham == "Gold Hammer"){
             perHit = 5
+        } else if( ham == "Mjölnir"){
+            perHit = 10
         } else{
             perHit = 1
         }
