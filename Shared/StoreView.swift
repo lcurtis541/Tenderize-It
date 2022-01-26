@@ -17,14 +17,14 @@ struct StoreView: View {
     var autoPrice = [1000,2000,5000,10000,50000,100000,500000,1000000]
     @State var numAuto = UserDefaults.standard.integer(forKey: AUTO_KEY)
     @State var autoText = ""
-    @State var twoxText: String = UserDefaults.standard.bool(forKey: TWOX_KEY) ? "Bought" : "10k"
+    @State var twoxText: String = UserDefaults.standard.bool(forKey: TWOX_KEY) ? "Bought" : "20k"
     @State var twoxBought:Bool = UserDefaults.standard.bool(forKey: TWOX_KEY)
     @State var chainText: String = UserDefaults.standard.bool(forKey: CHAIN_KEY) ? "Bought" : "50k"
     @State var chainBought:Bool = UserDefaults.standard.bool(forKey: CHAIN_KEY)
     @State var OGBackText: String = UserDefaults.standard.bool(forKey: OGBACK_KEY) ? "Bought" : "50k"
     @State var OGBackBought:Bool = UserDefaults.standard.bool(forKey: OGBACK_KEY)
     @State var goldHammerBought:Bool = UserDefaults.standard.bool(forKey: GHAMMER_KEY)
-    @State var goldHammerText:String = UserDefaults.standard.bool(forKey: GHAMMER_KEY) ? "Bought" : "75k"
+    @State var goldHammerText:String = UserDefaults.standard.bool(forKey: GHAMMER_KEY) ? "Bought" : "50k"
     @State var thorBought:Bool = UserDefaults.standard.bool(forKey: THOR_KEY)
     @State var thorText:String = UserDefaults.standard.bool(forKey: THOR_KEY) ? "Bought" : "100k"
     let numForm = NumberFormatter()
@@ -38,8 +38,7 @@ struct StoreView: View {
                     Text(numForm.string(from: NSNumber(value: Int(count)))!)
                         .font(.title)
                         .foregroundColor(Color.blue)
-                } .onAppear(){
-                    numForm.numberStyle = .decimal                }
+                }
                 HStack{
                     Menu {
                         Button("Default", action:{ UserDefaults.standard.set("Hammer", forKey: HAMMER_KEY)})
@@ -270,7 +269,9 @@ struct StoreView: View {
             Spacer()
             Banner(unitID: "ca-app-pub-4056532790569466/7540809053").frame(width:UIScreen.screenWidth, height:UIScreen.screenHeight/12 )
             
-        }
+        } .onAppear(){
+            numForm.numberStyle = .decimal                }
+        
     }
     func buyFutureHam(){
         if(!fHamBought && count>2000){
@@ -293,10 +294,10 @@ struct StoreView: View {
         }
     }
     func buyGoldHam(){
-        if(!goldHammerBought && count>5000){
+        if(!goldHammerBought && count>50000){
             UserDefaults.standard.set("Gold Hammer", forKey: HAMMER_KEY)
             goldHammerText = "Bought"
-            count -= 5000
+            count -= 50000
             goldHammerBought = true
             UserDefaults.standard.set(true, forKey: GHAMMER_KEY)
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
@@ -306,7 +307,7 @@ struct StoreView: View {
         if(!thorBought && count>100000){
             UserDefaults.standard.set("Mjölnir", forKey: HAMMER_KEY)
             thorText = "Bought"
-            count -= 5000
+            count -= 100000
             thorBought = true
             UserDefaults.standard.set(true, forKey: THOR_KEY)
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
@@ -326,10 +327,10 @@ struct StoreView: View {
         }
     }
     func buy2x(){
-        if(!twoxBought && count>10000){
+        if(!twoxBought && count>20000){
             UserDefaults.standard.set(true, forKey: TWOX_KEY)
             twoxText = "Bought"
-            count -= 10000
+            count -= 20000
             twoxBought = true
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
         }
