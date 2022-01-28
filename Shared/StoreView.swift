@@ -11,10 +11,10 @@ struct StoreView: View {
     @State var count: Double = UserDefaults.standard.double(forKey: COUNT_KEY)
     @State var ham: String = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
     @State var fHamBought:Bool = UserDefaults.standard.bool(forKey: FHAMMERB_KEY)
-    @State var hammerText:String = UserDefaults.standard.bool(forKey: FHAMMERB_KEY) ? "Bought" : "2000"
+    @State var hammerText:String = UserDefaults.standard.bool(forKey: FHAMMERB_KEY) ? "Bought" : "2,000"
     @State var meatHammerBought:Bool = UserDefaults.standard.bool(forKey: MHAMMERB_KEY)
-    @State var meatHammerText:String = UserDefaults.standard.bool(forKey: MHAMMERB_KEY) ? "Bought" : "2000"
-    var autoPrice = [1000,2000,5000,10000,50000,100000,500000,1000000]
+    @State var meatHammerText:String = UserDefaults.standard.bool(forKey: MHAMMERB_KEY) ? "Bought" : "2,000"
+    var autoPrice = [1000,2000,5000,10000,50000,100000,500000,1000000,5000000,10000000]
     @State var numAuto = UserDefaults.standard.integer(forKey: AUTO_KEY)
     @State var autoText = ""
     @State var twoxText: String = UserDefaults.standard.bool(forKey: TWOX_KEY) ? "Bought" : "20k"
@@ -27,16 +27,20 @@ struct StoreView: View {
     @State var goldHammerText:String = UserDefaults.standard.bool(forKey: GHAMMER_KEY) ? "Bought" : "50k"
     @State var thorBought:Bool = UserDefaults.standard.bool(forKey: THOR_KEY)
     @State var thorText:String = UserDefaults.standard.bool(forKey: THOR_KEY) ? "Bought" : "100k"
+    @State var prisonBackText: String = UserDefaults.standard.bool(forKey: PRISONBACK_KEY) ? "Bought" : "5M"
+    @State var prisonBackBought:Bool = UserDefaults.standard.bool(forKey: PRISONBACK_KEY)
     let numForm = NumberFormatter()
 
     var body: some View {
         VStack{
             VStack{
-                HStack(){
+                VStack(){
                     Text("The Shop")
                         .font(.title)
-                    Text(numForm.string(from: NSNumber(value: Int(count)))!)
-                        .font(.title)
+                        .foregroundColor(Color.red)
+                        .font(.custom("Futura",size: UIScreen.screenWidth/20))
+                    Text("Beats: " + formatNumber(count))
+                        .font(.custom("Futura",size: UIScreen.screenWidth/30))
                         .foregroundColor(Color.blue)
                 }
                 HStack{
@@ -66,7 +70,7 @@ struct StoreView: View {
                     Menu {
                         Button("Default", action:{UserDefaults.standard.set("Background", forKey: BACK_KEY)})
                         Button("OG Background", action:{UserDefaults.standard.set("OGBackground", forKey: BACK_KEY)}).disabled(!OGBackBought)
-                    } label: {
+                        Button("Prison Background", action:{UserDefaults.standard.set("Prison", forKey: BACK_KEY)}).disabled(!prisonBackBought)                    } label: {
                         Text("Background")
                     }
                     .padding(7)
@@ -185,14 +189,14 @@ struct StoreView: View {
                         }
                         .buttonStyle(GrowingButton())
                         .onAppear(){
-                            if(numAuto == 8){
+                            if(numAuto == 10){
                                 self.autoText = "Bought"
                             } else{
-                                self.autoText = String(autoPrice[numAuto])
+                                self.autoText = formatNumber(Double(autoPrice[numAuto]))
                             }
 
                         }
-                        Text("Amount:\(numAuto)  Max:8")
+                        Text("Amount:\(numAuto)  Max:10")
                             .font(.custom("Futura",size: UIScreen.screenWidth/25))
                             .frame(maxWidth:.infinity)
                             .multilineTextAlignment(.center)
@@ -247,7 +251,7 @@ struct StoreView: View {
                     VStack(alignment:.center){
                         Image("OGBackground")
                             .resizable()
-                            .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/4)
+                            .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/3)
                         Text("OG Background")
                             .font(.custom("Futura",size: UIScreen.screenWidth/20))
                             .frame(maxWidth:.infinity)
@@ -265,7 +269,28 @@ struct StoreView: View {
                         .buttonStyle(GrowingButton())
                     }
                 }
-            }
+                HStack{
+                    VStack(alignment:.center){
+                        Image("Prison")
+                            .resizable()
+                            .frame(width: UIScreen.screenWidth/4, height: UIScreen.screenWidth/3)
+                        Text("Prison Back")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/20))
+                            .frame(maxWidth:.infinity)
+                    }
+                    VStack(alignment:.center){
+                        Text("I woudn't think you would want to do it here. But sometimes you have to do what you have to do. 2x")
+                            .font(.custom("Futura",size: UIScreen.screenWidth/25))
+                            .frame(maxWidth:.infinity)
+                            .multilineTextAlignment(.center)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(1)
+                        Button(action: buyPrisonBack){
+                            Text(prisonBackText)
+                        }
+                        .buttonStyle(GrowingButton())
+                    }
+                }            }
             Spacer()
             Banner(unitID: "ca-app-pub-4056532790569466/7540809053").frame(width:UIScreen.screenWidth, height:UIScreen.screenHeight/12 )
             
@@ -314,16 +339,18 @@ struct StoreView: View {
         }
     }
     func buyAuto(){
-        if(Int(count)>autoPrice[numAuto] && numAuto != 8){
+        if(numAuto != 10){
+           if(Int(count)>autoPrice[numAuto]){
             count -= Double(autoPrice[numAuto])
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
             numAuto += 1
             UserDefaults.standard.set(numAuto, forKey: AUTO_KEY)
-            if(numAuto == 4){
+            if(numAuto == 10){
                 self.autoText = "Bought"
             } else{
-                self.autoText = String(autoPrice[numAuto])
+                self.autoText = formatNumber(Double(autoPrice[numAuto]))
             }
+        }
         }
     }
     func buy2x(){
@@ -353,6 +380,16 @@ struct StoreView: View {
             count -= 50000
             OGBackBought = true
             UserDefaults.standard.set(true, forKey: OGBACK_KEY)
+            UserDefaults.standard.set(count, forKey: COUNT_KEY)
+        }
+    }
+    func buyPrisonBack(){
+        if(!prisonBackBought && count>5000000){
+            UserDefaults.standard.set("Prison", forKey: BACK_KEY)
+            prisonBackText = "Bought"
+            count -= 5000000
+            prisonBackBought = true
+            UserDefaults.standard.set(true, forKey: PRISONBACK_KEY)
             UserDefaults.standard.set(count, forKey: COUNT_KEY)
         }
     }

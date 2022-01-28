@@ -23,6 +23,7 @@ let MEAT_KEY = "MEAT"
 let OGBACK_KEY = "I mean OG"
 let GHAMMER_KEY = "ALL I SEE IS GOLD"
 let THOR_KEY = "Thor"
+let PRISONBACK_KEY = "Prison"
 
 
 struct ContentView: View {
@@ -31,7 +32,8 @@ struct ContentView: View {
     @State var ham: String = UserDefaults.standard.string(forKey: HAMMER_KEY) ?? "Hammer"
     @State var meat: String = UserDefaults.standard.string(forKey: MEAT_KEY) ?? "steak"
     @State var background: String = UserDefaults.standard.string(forKey: BACK_KEY) ?? "Background"
-    @State var meatHit: Double = (UserDefaults.standard.bool(forKey: CHAIN_KEY) == true) ? 10.0 : 1.0
+    @State var meatHit: Double = (UserDefaults.standard.string(forKey: MEAT_KEY) == "CSteak") ? 10.0 : 1.0
+    @State var backHit: Double = (UserDefaults.standard.string(forKey: BACK_KEY) == "Prison") ? 2.0 : 1.0
     @State var perHit: Int = (UserDefaults.standard.string(forKey: HAMMER_KEY) == "Meat Hammer") ? 2 : 1
     @State var multiBase: Double = (UserDefaults.standard.bool(forKey: TWOX_KEY) == true) ? 2.0 : 1.0
     @State var multiplyer: Double = (UserDefaults.standard.bool(forKey: TWOX_KEY) == true) ? 2.0 : 1.0
@@ -71,7 +73,8 @@ struct ContentView: View {
                     Text("Beats")
                         .lineLimit(1)
                         .font(.system(size: UIScreen.screenWidth/15, design: .rounded))
-                        .shadow(color:.gray,radius:2)
+                        .foregroundColor(Color.white)
+                        .shadow(color: .black, radius: 5)
                         .onReceive(timer) { _ in
                             count += Double(autoBeaters)
                             let diffComponents = Date().timeIntervalSinceReferenceDate-lastHit.timeIntervalSinceReferenceDate
@@ -87,6 +90,8 @@ struct ContentView: View {
                             .fixedSize(horizontal: true, vertical: true)
                             .frame(maxWidth:.infinity)
                             .multilineTextAlignment(.center)
+                            .foregroundColor(Color.white)
+                            .shadow(color: .black, radius: 5)
                             .layoutPriority(1)
                     }
                     .padding()
@@ -100,10 +105,13 @@ struct ContentView: View {
                     Text("Multi")
                         .lineLimit(1)
                         .font(.system(size: UIScreen.screenWidth/15, design: .rounded))
-                        .shadow(color:.gray,radius:2)
+                        .foregroundColor(Color.white)
+                        .shadow(color: .black, radius: 5)
                     VStack{
                         Text(String(format: "%.2f", multiplyer))
                             .lineLimit(1)
+                            .foregroundColor(Color.white)
+                            .shadow(color: .black, radius: 5)
                             .font(.system(size: UIScreen.screenWidth/23, design: .rounded))
                     }
                     .padding()
@@ -153,7 +161,9 @@ struct ContentView: View {
                 HStack{
                     Button("Shop") {
                                 showingShop.toggle()
-                            }
+                        UserDefaults.standard.set(count, forKey: COUNT_KEY)
+                        
+                    }
                             .sheet(isPresented: $showingShop,onDismiss: updateShop) {
                                 StoreView()
                             }
@@ -165,7 +175,7 @@ struct ContentView: View {
                             .offset(y:(UIScreen.screenHeight * 0.1))
                             .buttonStyle(GrowingButton())
                 }
-            }
+            }                   
             
         }
         .offset(y:UIScreen.screenHeight/7)
@@ -235,9 +245,14 @@ struct ContentView: View {
         } else{
             meatHit = 1
         }
+        if(background == "Prison"){
+            backHit = 2
+        } else{
+            backHit = 1
+        }
     }
     func beatMeat(){
-        self.count += multiplyer * Double(perHit) * meatHit
+        self.count += multiplyer * Double(perHit) * meatHit * backHit
         UserDefaults.standard.set(count, forKey: COUNT_KEY)
         switch audioCount{
         case 1:
@@ -282,7 +297,8 @@ struct ContentView: View {
         }
         lastHit = Date()
         
-            }
+    }
+
     }
 
 struct ContentView_Previews: PreviewProvider {
@@ -363,27 +379,31 @@ func formatNumber(_ n: Double) -> String {
     numForm.numberStyle = .decimal
     let num = abs(Double(n))
     let sign = (n < 0) ? "-" : ""
+    if(num<100000.0){
+        return numForm.string(from: NSNumber(value: Int(num)))!
+        
+    } else{
+        switch num {
+        case 1_000_000_000...:
+            var formatted = num / 1_000_000_000
+            formatted = formatted.reduceScale(to: 2)
+            return "\(sign)\(formatted)B"
 
-    switch num {
-    case 1_000_000_000...:
-        var formatted = num / 1_000_000_000
-        formatted = formatted.reduceScale(to: 3)
-        return "\(sign)\(formatted)B"
+        case 1_000_000...:
+            var formatted = num / 1_000_000
+            formatted = formatted.reduceScale(to: 2)
+            return "\(sign)\(formatted)M"
 
-    case 1_000_000...:
-        var formatted = num / 1_000_000
-        formatted = formatted.reduceScale(to: 3)
-        return "\(sign)\(formatted)M"
+        case 1_000...:
+            var formatted = num / 1_000
+            formatted = formatted.reduceScale(to: 2)
+            return "\(sign)\(formatted)K"
 
-    case 1_000...:
-        var formatted = num / 1_000
-        formatted = formatted.reduceScale(to: 3)
-        return "\(sign)\(formatted)K"
+        case 0...:
+            return "\(n)"
 
-    case 0...:
-        return "\(n)"
-
-    default:
-        return "\(sign)\(n)"
+        default:
+            return "\(sign)\(n)"
+        }
     }
 }
