@@ -53,6 +53,9 @@ struct ContentView: View {
     @State private var showChal = false
     @State var audioCount: Int = 1
     @State var lastHit = Date()
+    @State var hitAmmount = 1.0
+    @State var ammountVis1 = false
+    @State var ammountOp1 = 0
     let numForm = NumberFormatter()
     @State var autoBeaters = UserDefaults.standard.integer(forKey: AUTO_KEY)
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -124,7 +127,7 @@ struct ContentView: View {
             .offset(y:-(UIScreen.screenHeight * 0.375))
                 
 
-            
+            ZStack{
             Button (action: beatMeat ,label: {
                 Image(meat)
                     .resizable()
@@ -137,10 +140,17 @@ struct ContentView: View {
                     DragGesture(minimumDistance: 0)
                         .onChanged({ _ in
                             self.degree = 60
+                            self.ammountVis1.toggle()
+                            self.ammountOp1 = 1
                             
                         })
                         .onEnded({ _ in
+                            self.ammountVis1.toggle()
                             self.degree = 0
+                            withAnimation(.linear(duration:4).repeatForever(autoreverses:true),{
+                                self.ammountOp1 = 0
+                            })
+                            
                         })
                 )
                 .onAppear {
@@ -157,6 +167,16 @@ struct ContentView: View {
                     self.audioPlayer10 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                        
                        }
+                Text("+\(Int(hitAmmount))")
+                    .foregroundColor(Color.white)
+                    .shadow(color: .black, radius: 5)
+                    .font(.system(size: UIScreen.screenWidth/23, design: .rounded))
+                    .opacity(Double(ammountOp1))
+                    .offset(x: ammountVis1 ? 50: 0,y: ammountVis1 ? -50: 0)
+                    .animation(.linear.repeatForever(autoreverses:true))
+                    .id(self.hitAmmount.hashValue)
+                
+            }
             ZStack(alignment: .leading){
                 HStack{
                     Button("Shop") {
@@ -194,10 +214,12 @@ struct ContentView: View {
                     DragGesture(minimumDistance: 0)
                         .onChanged({ _ in
                             self.degree = 60
-                            
+                            self.ammountVis1.toggle()
                         })
                         .onEnded({ _ in
                             self.degree = 0
+                            self.ammountVis1.toggle()
+                            
                         })
                 )
                 .onAppear {
@@ -212,7 +234,7 @@ struct ContentView: View {
                     self.audioPlayer8 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                     self.audioPlayer9 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
                     self.audioPlayer10 = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
-                       
+                    self.hitAmmount = multiplyer * Double(perHit) * meatHit * backHit
                        }
         }
         .offset(x:-(UIScreen.screenHeight/13),y:UIScreen.screenHeight/8)
@@ -252,7 +274,8 @@ struct ContentView: View {
         }
     }
     func beatMeat(){
-        self.count += multiplyer * Double(perHit) * meatHit * backHit
+        self.hitAmmount = multiplyer * Double(perHit) * meatHit * backHit
+        self.count += hitAmmount
         UserDefaults.standard.set(count, forKey: COUNT_KEY)
         switch audioCount{
         case 1:
@@ -386,17 +409,17 @@ func formatNumber(_ n: Double) -> String {
         switch num {
         case 1_000_000_000...:
             var formatted = num / 1_000_000_000
-            formatted = formatted.reduceScale(to: 2)
+            formatted = formatted.reduceScale(to: 3)
             return "\(sign)\(formatted)B"
 
         case 1_000_000...:
             var formatted = num / 1_000_000
-            formatted = formatted.reduceScale(to: 2)
+            formatted = formatted.reduceScale(to: 3)
             return "\(sign)\(formatted)M"
 
         case 1_000...:
             var formatted = num / 1_000
-            formatted = formatted.reduceScale(to: 2)
+            formatted = formatted.reduceScale(to: 3)
             return "\(sign)\(formatted)K"
 
         case 0...:
